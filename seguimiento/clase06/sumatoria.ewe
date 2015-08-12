@@ -1,0 +1,19 @@
+main:
+	cero:= 0
+	uno := 1
+	readInt(n)
+	i := uno
+	suma := cero
+ciclo:
+	if i > n then goto finciclo
+	suma := suma + i
+	i := i + uno
+	goto ciclo
+finciclo:
+	writeInt(suma)
+end: halt
+equ cero M[0]
+equ uno M[1]
+equ n M[2]
+equ suma M[3]
+equ i M[4]
