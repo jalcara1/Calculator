@@ -1,0 +1,25 @@
+main:
+	suma := 0
+	result := 0
+	n := 0
+	uno := 1
+	cero := 0
+
+ciclo:
+	readInt(x)
+	if x<cero then goto E1
+	suma:= suma+x
+	n := n+uno
+	goto ciclo
+
+E1:	result := suma/n
+	writeInt(result)
+
+end:	halt
+
+equ	suma	M[0]
+equ 	result	M[1]
+equ	n	M[2]
+equ	uno	M[3]
+equ	cero	M[4]
+equ 	x	M[5]
