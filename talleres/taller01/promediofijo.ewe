@@ -1,0 +1,25 @@
+main:
+	readInt(n)
+	suma := 0
+	result := 0
+	compar := 1
+	uno := 1
+
+ciclo:
+	if compar>n then goto E1
+	compar := compar + uno
+	readInt(x)
+	suma := suma + x
+	goto ciclo
+
+E1:	result := suma/n
+	writeInt(result)
+
+end:	halt
+
+equ	n	M[0]
+equ	suma	M[1]
+equ	result	M[2]
+equ	compar	M[3]
+equ	uno	M[4]
+equ	x	M[5]

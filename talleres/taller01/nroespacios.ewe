@@ -1,0 +1,29 @@
+main:
+	size := 100
+	readStr(M[100],size)
+	cont := 0
+	uno := 1
+	i := 100
+	cero := 0
+	space := 32
+ciclo:
+	temp := M[i+0]
+	if temp=cero then goto end
+	if temp=space then goto sumar
+	goto prox
+	
+sumar:  cont := cont + uno
+
+prox:   i:= i+uno
+	goto ciclo
+
+end: 	writeInt(cont)
+	halt
+
+equ 	cont	M[0]
+equ 	uno 	M[1]
+equ 	i 	M[2]
+equ 	size 	M[3]
+equ  	cero 	M[4]
+equ 	space 	M[5]
+equ 	temp 	M[6]
