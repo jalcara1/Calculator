@@ -1,0 +1,57 @@
+inicio:
+	len := 100
+	readStr(s, len)
+	i := 0
+	cb := 0
+	cbb := 0
+	cbm := 0
+	cero := 0
+	uno := 0
+	uno := 1
+	lita := 97
+	litZ := 90
+	estado := 0
+	base := 13
+
+ciclo:
+	dir := base +i
+	si := M[dir + 0]
+	if si = cero then goto finciclo
+	if estado = uno then goto impar
+	estado := uno
+	cb := cb + uno
+	if si <= litZ then goto incrementar
+	i := i+uno
+	goto incrementar
+
+impar:
+	estado := cero
+	if lita > si then goto incrementar
+	cbb := cbb +uno
+
+incrementar:
+	i := i + uno
+	goto ciclo
+
+finciclo:
+	cbm := cb -cbb
+	writeInt(cb)
+	writeInt(cbb)
+	writeInt(cbm)
+
+fin:	halt
+
+equ	len	M[0]
+equ 	i	M[1]
+equ 	estado	M[2]
+equ	cb	M[3]
+equ	cbb	M[4]
+equ	cbm	M[5]
+equ	lita	M[6]
+equ	litZ	M[7]
+equ	base	M[8]
+equ	si	M[9]
+equ	uno	M[10]
+equ	cero	M[11]
+equ	dir	M[12]
+equ	s	M[13]
