@@ -5,10 +5,10 @@ main:
 
 	if a<=cero then goto E1
 	if b<=cero then goto E1
-	writeInt(b)
+	writeInt(a)
 	goto end
 
-E1:	writeInt(a)
+E1:	writeInt(b)
 	goto end
 
 end:	halt

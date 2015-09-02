@@ -3,32 +3,29 @@ main:
 	readInt(b)
 	readInt(c)
 
-	if a<c then goto E1
-E1:	if a>b then goto E2
-	if a<b then goto E3
-E3:	if a>c then goto E2
-
-E2:	writeInt(a)
+	if a>b then goto E1
+	if b>c then goto E2
+	writeInt(b)
 	goto end
 
+E1:	if a>c then goto E3
+	writeInt(a)
+	goto end
 
-	if b<c then goto E4
-E4:	if b>a then goto E5
-	if b<a then goto E6
-E6:	if b>c then goto E5
+E2:	if a>c then goto E4
+	writeInt(c)
+	goto end
+
+E3:	if b>c then goto E5
+	writeInt(c)
+	goto end
+
+E4:	writeInt(a)
+	goto end
 
 E5:	writeInt(b)
 	goto end
-
-
-	if c<a then goto E7
-E7:	if c>b then goto E8
-	if c<b then goto E9
-E9:	if c>a then goto E8
-
-E8:	writeInt(c)
-	goto end
-
+	
 end: 	halt
 
 equ	a	M[0]
