@@ -80,5 +80,10 @@ class NumNode : public AST {
  private:
    int val;
 };
+class RecallNode : public AST{
+  RecallNode() = default;
+
+  int evaluate();
+};
 
 

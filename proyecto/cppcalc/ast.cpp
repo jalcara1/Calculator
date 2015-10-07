@@ -105,3 +105,9 @@ NumNode::NumNode(int n) :
 int NumNode::evaluate() {
    return val;
 }
+
+RecalNode::RecalNode(){}
+
+int RecalNode::evaluate(){
+  return calc_>recall();
+}

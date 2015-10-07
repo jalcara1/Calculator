@@ -22,7 +22,8 @@ AST* Parser::Prog() {
    Token* t = scan->getToken();
 
    if (t->getType() != eof) {
-      cout << "Syntax Error: Expected EOF, found token at column " << t->getCol() << endl;
+      cout << "Syntax Error: Expected EOF, found token at column "
+	   << t->getCol() << endl;
       throw ParseError;
    }
 
@@ -51,34 +52,81 @@ AST* Parser::RestExpr(AST* e) {
 AST* Parser::Term() {
    //write your Term() code here. This code is just temporary
    //so you can try the calculator out before finishing it.
-   Token* t = scan->getToken();
+   // Token* t = scan->getToken();
 
-   if (t->getType() == number) {
-      istringstream in(t->getLex());
-      int val;
-      in >> val;
-      return new NumNode(val);
-   }
+   // if (t->getType() == number) {
+   //    istringstream in(t->getLex());
+   //    int val;
+   //    in >> val;
+   //    return new NumNode(val);
+   // }
 
-   cout << "Term not implemented" << endl;
+   // cout << "Term not implemented" << endl;
 
-   throw ParseError; 
+   // throw ParseError;
+  return RestTerm(Storable());
+   
 }
 
 AST* Parser::RestTerm(AST* e) {
    cout << "RestTerm not implemented" << endl;
+   Token* t = scan->getToken();
 
-   throw ParseError; 
+   if (t->getType() == times) {
+     return RestTerm(new TimesNode(e,Storable()));
+   }
+
+   if (t->getType() == divide)
+     return RestTerm(new DivideNode(e,Storable()));
+
+   scan->putBackToken();
+
+   return e; 
 }
 
 AST* Parser::Storable() {
    cout << "Storable not implemented" << endl;
 
-   throw ParseError; 
+   AST* result = Factor();
+
+   Token *t = scan->getToken();
+   if(t->getType() == keyword){
+
+     if(t->getLex() )) "S"){
+
+       return new StoreNode(result);
+     }
+     cout << "Syntax erro: Expected s found: " << t->getLex() << " line: " << t->getLine() << " col: " << t->getCol() << endl;
+     throw ParseError;
+   }
+
+   scan->putBackToken();
+   return result;
 }
 
 AST* Parser::Factor() {
    cout << "Factor not implemented" << endl;
+
+   Token* t = scan->getToken();
+
+   if (t->getType() == number) {
+       istringstream in(t->getLex());
+       int val;
+       in >> val;
+       return new NumNode(val);
+    }
+
+   if(t->getType() == keyword){
+
+     if(t->getLex() )) "R"){
+
+       return new RecallNode(result);
+     }
+
+     cout << "Syntax erro: Expected R found: " << t->getLex()
+     << " line: " << t->getLine()
+     << " col: " << t->getCol()
+     << endl;
 
    throw ParseError; 
 }
