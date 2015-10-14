@@ -92,7 +92,7 @@ AST* Parser::Storable() {
    Token *t = scan->getToken();
    if(t->getType() == keyword){
 
-     if(t->getLex() )) "S"){
+     if(t->getLex() == "S"){
 
        return new StoreNode(result);
      }
@@ -118,16 +118,30 @@ AST* Parser::Factor() {
 
    if(t->getType() == keyword){
 
-     if(t->getLex() )) "R"){
+     if(t->getLex() == "R"){
 
-       return new RecallNode(result);
+       return new RecallNode();
+     }
+   }
+
+     if(t->getType() == lparen){
+       AST* result = Expr();
+       t = scan->getToken();
+       if(t->getType() == rparen){
+	 return  result;
+       }
+       cout << "Syntax erro: Expected ) found: " << t->getLex()
+	    << " line: " << t->getLine()
+	    << " col: " << t->getCol()
+	    << endl;
+       throw ParseError;
      }
 
-     cout << "Syntax erro: Expected R found: " << t->getLex()
-     << " line: " << t->getLine()
-     << " col: " << t->getCol()
-     << endl;
-
-   throw ParseError; 
+     cout << "Syntax erro: Expected number, R, C" << t->getLex()
+	  << " line: " << t->getLine()
+	  << " col: " << t->getCol()
+	  << endl;
+     throw ParseError; 
 }
-   
+
+

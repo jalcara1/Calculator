@@ -77,7 +77,7 @@ TimesNode::TimesNode(AST* left, AST* right):
 {}
 
 int TimesNode::evaluate() {
-   return getLeftSubTree()->evaluate() + getRightSubTree()->evaluate();
+   return getLeftSubTree()->evaluate() * getRightSubTree()->evaluate();
 }
 
 DivideNode::DivideNode(AST* left, AST* right):
@@ -85,7 +85,7 @@ DivideNode::DivideNode(AST* left, AST* right):
 {}
 
 int DivideNode::evaluate() {
-   return getLeftSubTree()->evaluate() + getRightSubTree()->evaluate();
+   return getLeftSubTree()->evaluate() / getRightSubTree()->evaluate();
 }
 
 StoreNode::StoreNode(AST* sub) : UnaryNode(sub)
@@ -106,8 +106,8 @@ int NumNode::evaluate() {
    return val;
 }
 
-RecalNode::RecalNode(){}
+RecallNode::RecallNode(){}
 
-int RecalNode::evaluate(){
-  return calc_>recall();
+int RecallNode::evaluate(){
+  return calc->recall();
 }

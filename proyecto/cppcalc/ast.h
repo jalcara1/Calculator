@@ -81,7 +81,8 @@ class NumNode : public AST {
    int val;
 };
 class RecallNode : public AST{
-  RecallNode() = default;
+ public:
+  RecallNode();
 
   int evaluate();
 };
