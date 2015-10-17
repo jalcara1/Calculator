@@ -1,21 +1,20 @@
+/*
+ *condicion01.cpp
+ *
+ *Compilar: g++ -o condicion01 condicion01.cpp
+ *Ejecutar: ./condicion01
+ *
+*/
+
 #include <iostream>
 using namespace std;
 
 int main(){
   
-  int c;
+  int c =0;
+  cout << "Ingrese un numero: " << endl;
 
-  cin >> c ? c == 0 ? cout <<"El usuario dijito un valor de cero"<<endl : cout <<"El usuario dijito un valor diferente de cero"<< endl : 
-  
+  cout << (((cin>>c)&&(c==0))?"Es cero":"No es cero")<<endl;
+    return 0;
 
-
-    //  if(c == 0){
-    //cout << "El usuario dijito un valor de cero" << endl;
-
-    //  }else{
-
-    //    cout << "El usuario digito un valor diferente de cero" << endl;
-    //  }
-
-  return 0;
 }
