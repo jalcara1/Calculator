@@ -1,0 +1,7 @@
+Digite un entero, un caracter, un entero y una cadena
+Number1: 12 Caracter: a Number2: 1 Cadena2: uno
+Number1: 35624 Caracter: b Number2: 3 Cadena2: bsif
+Number1: 234 Caracter: d Number2: 4234 Cadena2: qunientos
+Number1: 123 Caracter: a Number2: 345 Cadena2: nukilokiloki
+Number1: 234 Caracter: a Number2: 34 Cadena2: juhjiofihjiodfof
+Number1: 234 Caracter: a Number2: 84974 Cadena2: QSCCDERFGhdswertgvcdrtgvcVHYTRDFGFTYJ
