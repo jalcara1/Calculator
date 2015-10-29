@@ -7,25 +7,27 @@ using namespace std;
 
 Calculator* calc;
 
-int main(int argc, char* argv[]){
-   string line;
- 
-   try{
-      cout << "Please enter a calculator expression: ";
+int main(int argc, char* argv[]) {
+  string line;
 
-      getline(cin, line);
-      // line + '\n';
+  try {
 
-      calc = new Calculator();
+    cout << "Please enter a calculator expression: ";
 
-      int result = calc->eval(line);
+    getline(cin, line);
+    // line + '\n';
 
-      cout << "The result is " << result << endl;
+    calc = new Calculator();
 
-      delete calc;
-   }
-   catch(Exception ex){
-      cout << "Program Aborted due to exception!" << endl;
-   }
+    int result = calc->eval(line);
+
+    cout << "The result is " << result << endl;
+
+    delete calc;
+
+  }
+  catch(Exception ex) {
+    cout << "Program Aborted due to exception!" << endl;
+  }
 }
-   
+

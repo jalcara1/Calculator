@@ -1,82 +1,95 @@
-/*
- *
- */
-#pragma once
+#pragma once // permite decir que solo se va a añadir una vez
 
 using namespace std;
 
-class AST{  
+class AST {
  public:
-   AST();
-   virtual ~AST() = 0;
-   virtual int evaluate() = 0;
+  AST();
+  virtual ~AST() = 0;
+  virtual int evaluate() = 0;
 };
-class BinaryNode:public AST{
+
+class BinaryNode : public AST {
  public:
-   BinaryNode(AST* left, AST* right);
-   ~BinaryNode();
+  BinaryNode(AST* left, AST* right);
+  ~BinaryNode();
 
-   AST* getLeftSubTree() const;
-   AST* getRightSubTree() const;
-
- private:
-   AST* leftTree;
-   AST* rightTree;
-};
-class UnaryNode:public AST{
- public:
-   UnaryNode(AST* sub);
-   ~UnaryNode();
-
-   AST* getSubTree() const;
+  AST* getLeftSubTree() const;
+  AST* getRightSubTree() const;
 
  private:
-   AST* subTree;
+  AST* leftTree;
+  AST* rightTree;
 };
-class AddNode:public BinaryNode{
- public:
-   AddNode(AST* left, AST* right);
-   
-   int evaluate();
-};
-class SubNode:public BinaryNode{
- public:
-   SubNode(AST* left, AST* right);
 
-   int evaluate();
-};
-class TimesNode:public BinaryNode{
+class UnaryNode : public AST {
  public:
-   TimesNode(AST* left, AST* right);
-   
-   int evaluate();
+  UnaryNode(AST* sub);
+  ~UnaryNode();
+
+  AST* getSubTree() const;
+
+ private:
+  AST* subTree;
 };
-class DivideNode:public BinaryNode{
+
+class AddNode : public BinaryNode {
  public:
-   DivideNode(AST* left, AST* right);
-   
-   int evaluate();
+  AddNode(AST* left, AST* right);
+
+  int evaluate();
 };
-class StoreNode:public UnaryNode{
+
+class SubNode : public BinaryNode {
+ public:
+  SubNode(AST* left, AST* right);
+
+  int evaluate();
+};
+
+
+class TimesNode : public BinaryNode {
+ public:
+  TimesNode(AST* left, AST* right);
+
+  int evaluate();
+};
+
+
+class DivideNode : public BinaryNode {
+ public:
+  DivideNode(AST* left, AST* right);
+
+  int evaluate();
+};
+
+class StoreNode: public UnaryNode {
  public:
   StoreNode(AST* sub);
 
   int evaluate();
 };
-class NumNode:public AST{
- public:
-   NumNode(int n);
 
-   int evaluate();
+
+class NumNode : public AST {
+ public:
+  NumNode(int n);
+
+  int evaluate();
 
  private:
-   int val;
+  int val;
 };
-class RecallNode:public AST{
+
+class RecallNode : public AST{
  public:
   RecallNode();
 
   int evaluate();
 };
+
+
+
+
 
 

@@ -3,15 +3,15 @@
 #include <iostream>
 #include "token.h"
 
-class Scanner{
-public:
+class Scanner {
+ public:
   Scanner(istream* in);
   ~Scanner();
 
   Token* getToken();
   void putBackToken();
- 
-private:
+
+ private:
   Scanner();
 
   istream* inStream;

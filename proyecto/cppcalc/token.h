@@ -1,14 +1,15 @@
-#ifndef token_h
-#define token_h
+#pragma once
 
 #include <string>
 using namespace std;
 
-enum TokenType{
-   identifier,keyword,number,add,sub,times,divide,lparen,rparen,eof,unrecognized
+enum TokenType {
+  identifier,keyword,number,add,sub,times,divide,lparen,rparen,eof,unrecognized
 };
-class Token{
-public:
+
+class Token {
+ public:
+
   Token();
   Token(TokenType typ, int line, int col);
   virtual ~Token();
@@ -18,22 +19,21 @@ public:
   int getCol() const;
   virtual string getLex() const;
 
-private:
+ private:
   TokenType type;
   int line,col;
 };
-class LexicalToken: public Token{
- public:
-   LexicalToken(TokenType typ, string* lex, int line, int col);
-   ~LexicalToken();
 
-   virtual string getLex() const;
+class LexicalToken: public Token {
+ public:
+  LexicalToken(TokenType typ, string* lex, int line, int col);
+  ~LexicalToken();
+
+  virtual string getLex() const;
 
  private:
-   string* lexeme;
+  string* lexeme;
 };
-#endif
-
 
 
 

@@ -24,4 +24,6 @@ parser.o: parser.cpp parser.h
 
 clean:
 	rm -f *.o
-	rm -f calc
+	rm -f *~
+	rm -f *.exe
+	rm -f *.gch

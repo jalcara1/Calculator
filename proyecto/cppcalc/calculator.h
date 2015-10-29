@@ -1,19 +1,21 @@
-#pragma once
+#pragma once // evita que se incluya dos veces un fichero
+
 #include <string>
-#include <iostream>
+
 using namespace std;
 
-class Calculator{
+
+class Calculator {
  public:
-   Calculator();
+  Calculator();
 
-   int eval(string expr);
-   void store(int val);
-   int recall();
-
+  int eval(string flujo);
+  void store(int val);
+  int recall();
+  
  private:
-   int memory;
+  int memory;
+
 };
+
 extern Calculator* calc;
-
-
