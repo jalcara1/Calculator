@@ -4,13 +4,12 @@
 #include <string>
 #include <iostream>
 #include <sstream>
+using namespace std;
 
-
-Calculator::Calculator():
-   memory(0)
+Calculator::Calculator():memory(0)
 {}
 
-int Calculator::eval(string expr) {
+int Calculator::eval(string expr){
 
    Parser* parser = new Parser(new istringstream(expr));
    
@@ -18,17 +17,13 @@ int Calculator::eval(string expr) {
    
    int result = tree->evaluate();
    
-   delete tree;
-   
-   delete parser;
-   
+   delete tree;   
+   delete parser;   
    return result;
 }
-
-void Calculator::store(int val) {
+void Calculator::store(int val){
    memory = val;
 }
-
-int Calculator::recall() {
+int Calculator::recall(){
    return memory;
 }

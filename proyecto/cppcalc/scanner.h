@@ -3,7 +3,7 @@
 #include <iostream>
 #include "token.h"
 
-class Scanner {
+class Scanner{
 public:
   Scanner(istream* in);
   ~Scanner();

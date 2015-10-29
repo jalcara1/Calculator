@@ -4,13 +4,11 @@
 #include <string>
 using namespace std;
 
-enum TokenType {
+enum TokenType{
    identifier,keyword,number,add,sub,times,divide,lparen,rparen,eof,unrecognized
 };
-
-class Token {
+class Token{
 public:
-
   Token();
   Token(TokenType typ, int line, int col);
   virtual ~Token();
@@ -24,8 +22,7 @@ private:
   TokenType type;
   int line,col;
 };
-
-class LexicalToken: public Token {
+class LexicalToken: public Token{
  public:
    LexicalToken(TokenType typ, string* lex, int line, int col);
    ~LexicalToken();
@@ -35,7 +32,6 @@ class LexicalToken: public Token {
  private:
    string* lexeme;
 };
-
 #endif
 
 

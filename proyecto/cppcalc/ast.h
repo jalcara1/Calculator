@@ -5,14 +5,13 @@
 
 using namespace std;
 
-class AST {
+class AST{  
  public:
    AST();
    virtual ~AST() = 0;
    virtual int evaluate() = 0;
 };
-
-class BinaryNode : public AST {
+class BinaryNode:public AST{
  public:
    BinaryNode(AST* left, AST* right);
    ~BinaryNode();
@@ -24,8 +23,7 @@ class BinaryNode : public AST {
    AST* leftTree;
    AST* rightTree;
 };
-
-class UnaryNode : public AST {
+class UnaryNode:public AST{
  public:
    UnaryNode(AST* sub);
    ~UnaryNode();
@@ -35,43 +33,37 @@ class UnaryNode : public AST {
  private:
    AST* subTree;
 };
-
-class AddNode : public BinaryNode {
+class AddNode:public BinaryNode{
  public:
    AddNode(AST* left, AST* right);
    
    int evaluate();
 };
-
-class SubNode : public BinaryNode {
+class SubNode:public BinaryNode{
  public:
    SubNode(AST* left, AST* right);
 
    int evaluate();
 };
-
-class TimesNode : public BinaryNode {
+class TimesNode:public BinaryNode{
  public:
    TimesNode(AST* left, AST* right);
    
    int evaluate();
 };
-
-
-class DivideNode : public BinaryNode {
+class DivideNode:public BinaryNode{
  public:
    DivideNode(AST* left, AST* right);
    
    int evaluate();
 };
-
-class StoreNode : public UnaryNode{
+class StoreNode:public UnaryNode{
  public:
   StoreNode(AST* sub);
 
   int evaluate();
 };
-class NumNode : public AST {
+class NumNode:public AST{
  public:
    NumNode(int n);
 
@@ -80,7 +72,7 @@ class NumNode : public AST {
  private:
    int val;
 };
-class RecallNode : public AST{
+class RecallNode:public AST{
  public:
   RecallNode();
 

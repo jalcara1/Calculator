@@ -1,11 +1,9 @@
 #pragma once
-
 #include <string>
-
+#include <iostream>
 using namespace std;
 
-
-class Calculator {
+class Calculator{
  public:
    Calculator();
 
@@ -16,7 +14,6 @@ class Calculator {
  private:
    int memory;
 };
-
 extern Calculator* calc;
 
 

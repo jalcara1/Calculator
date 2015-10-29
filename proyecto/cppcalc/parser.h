@@ -5,7 +5,7 @@
 #include "ast.h"
 #include "scanner.h"
 
-class Parser {
+class Parser{
  public:
    Parser(istream* in);
    ~Parser();
@@ -23,6 +23,4 @@ class Parser {
 
    Scanner* scan;
 };
-
-
 #endif   

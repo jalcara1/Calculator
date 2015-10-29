@@ -1,6 +1,6 @@
 #pragma once
 
-enum Exception {
+enum Exception{
   UnrecognizedToken, //Token in object file not recognized
   ParseError
 };
