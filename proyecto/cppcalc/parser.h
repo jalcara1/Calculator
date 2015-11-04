@@ -1,13 +1,11 @@
 #pragma once
-
 #include "ast.h"
 #include "scanner.h"
 
-class Parser {
+class Parser{
  public:
   Parser(istream* in);
   ~Parser();
-
   AST* parse();
 
  private:
@@ -16,7 +14,8 @@ class Parser {
   AST* RestExpr(AST* e);
   AST* Term();
   AST* RestTerm(AST* t);
-  AST* Storable();
+  AST* Storable(); 
+  AST* MemOperation(AST* result);
   AST* Factor();
 
   Scanner* scan;

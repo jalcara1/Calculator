@@ -1,19 +1,17 @@
 #pragma once // permite decir que solo se va a añadir una vez
-
 using namespace std;
 
-class AST {
- public:
+class AST{ 
+ public:  
   AST();
   virtual ~AST() = 0;
   virtual int evaluate() = 0;
 };
 
-class BinaryNode : public AST {
+class BinaryNode:public AST{
  public:
   BinaryNode(AST* left, AST* right);
-  ~BinaryNode();
-
+  ~BinaryNode();  
   AST* getLeftSubTree() const;
   AST* getRightSubTree() const;
 
@@ -22,51 +20,58 @@ class BinaryNode : public AST {
   AST* rightTree;
 };
 
-class UnaryNode : public AST {
+class UnaryNode:public AST{
  public:
   UnaryNode(AST* sub);
   ~UnaryNode();
-
   AST* getSubTree() const;
 
  private:
   AST* subTree;
 };
 
-class AddNode : public BinaryNode {
+class AddNode:public BinaryNode{
  public:
   AddNode(AST* left, AST* right);
-
   int evaluate();
 };
 
-class SubNode : public BinaryNode {
+class SubNode:public BinaryNode{
  public:
   SubNode(AST* left, AST* right);
-
   int evaluate();
 };
 
-
-class TimesNode : public BinaryNode {
+class TimesNode:public BinaryNode{
  public:
   TimesNode(AST* left, AST* right);
-
   int evaluate();
 };
 
-
-class DivideNode : public BinaryNode {
+class DivideNode:public BinaryNode{
  public:
   DivideNode(AST* left, AST* right);
-
+  int evaluate();
+};
+class ModuloNode:public BinaryNode{
+ public:
+  ModuloNode(AST* left, AST* right);
   int evaluate();
 };
 
-class StoreNode: public UnaryNode {
+class StoreNode:public UnaryNode{
  public:
   StoreNode(AST* sub);
-
+  int evaluate();
+};
+class PlusNode:public UnaryNode{
+ public:
+  PlusNode(AST* sub);
+  int evaluate();
+};
+class MinusNode:public UnaryNode{
+ public:
+  MinusNode(AST* sub);
   int evaluate();
 };
 

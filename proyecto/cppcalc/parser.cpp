@@ -3,52 +3,51 @@
 #include <string>
 #include <sstream>
 
-Parser::Parser(istream* in) {
+Parser::Parser(istream* in){
   scan = new Scanner(in);
 }
 
-Parser::~Parser() {
-  try {
+Parser::~Parser(){
+  try{
     delete scan;
-  } catch (...) {}
+  }catch(...){}
 }
 
-AST* Parser::parse() {
+AST* Parser::parse(){
   return Prog();
 }
 
-AST* Parser::Prog() {
+AST* Parser::Prog(){
   AST* result = Expr();
   Token* t = scan->getToken();
 
-  if (t->getType() != eof) {
+  if(t->getType() != eof){
     cout << "Syntax Error: Expected EOF, found token at column " << t->getCol() << endl;
     throw ParseError;
   }
-
   return result;
 }
 
-AST* Parser::Expr() {
+AST* Parser::Expr(){
   return RestExpr(Term());
 }
 
-AST* Parser::RestExpr(AST* e) {
+AST* Parser::RestExpr(AST* e){
   Token* t = scan->getToken();
 
-  if (t->getType() == add) {
+  if(t->getType() == add){
     return RestExpr(new AddNode(e,Term()));
   }
 
-  if (t->getType() == sub)
+  if(t->getType() == sub){
     return RestExpr(new SubNode(e,Term()));
-
+  }
   scan->putBackToken();
 
   return e;
 }
 
-AST* Parser::Term() {
+AST* Parser::Term(){
   //write your Term() code here. This code is just temporary
   //so you can try the calculator out before finishing it.
   // Token* t = scan->getToken();
@@ -64,26 +63,52 @@ AST* Parser::Term() {
 
   //  throw ParseError;
   return RestTerm(Storable());
-
 }
 
-AST* Parser::RestTerm(AST* e) {
+AST* Parser::RestTerm(AST* e){
   Token* t = scan->getToken();
-
-  if (t->getType() == times) {
+  
+  if(t->getType() == times){
     return RestTerm(new TimesNode(e,Storable()));
   }
 
-  if (t->getType() == divide)
+  if(t->getType() == divide){
     return RestTerm(new DivideNode(e,Storable()));
+  }
 
+  if(t->getType() == modulo){
+    return RestTerm(new ModuloNode(e,Storable()));
+  }
+  
   scan->putBackToken();
 
   return e;
 }
 
-AST* Parser::Storable() {
-  AST* result = Factor();
+AST* Parser::Storable(){
+
+  // Token *t = scan->getToken();
+
+  // if(t->getType() == keyword){
+
+  //   if(t->getLex() == "S"){
+
+  //     return new StoreNode(result);
+  //   }
+  //   cout << " Syntax error: Expected S found: " << t -> getLex()
+  // 	 << "line: " << t->getLine()
+  // 	 << "col: " << t ->getCol()
+  // 	 << endl;
+
+  //   throw ParseError;
+  // }
+  // scan ->putBackToken();
+
+  return MemOperation(Factor());
+
+}
+
+AST* Parser::MemOperation(AST* result){
 
   Token *t = scan->getToken();
 
@@ -92,25 +117,34 @@ AST* Parser::Storable() {
     if(t->getLex() == "S"){
 
       return new StoreNode(result);
-    }
-    cout << " Syntax error: Expected S found: " << t -> getLex()
-	 << "line: " << t->getLine()
+      
+    }else if(t->getLex() == "P"){
+
+      return new PlusNode(result);
+
+    }else if(t->getLex() == "M"){
+
+      return new MinusNode(result);
+
+    }else{
+      cout << " Syntax error: Expected S found: " << t -> getLex()
+	   << "line: " << t->getLine()
 	 << "col: " << t ->getCol()
 	 << endl;
-
-    throw ParseError;
+    
+      throw ParseError;
+    }
   }
-
   scan ->putBackToken();
-
   return result;
-
 }
 
-AST* Parser::Factor() {
+AST* Parser::Factor(){
   Token* t = scan->getToken();
 
-  if (t->getType() == number) {
+  cout << t->getType() << endl;
+  
+  if(t->getType() == number){
     istringstream in(t->getLex());
     int val;
     in >> val;
@@ -134,8 +168,9 @@ AST* Parser::Factor() {
   if(t->getType() == lparen){
     AST* result = Expr();
     t = scan->getToken();
-    if(t->getType() == rparen )
+    if(t->getType() == rparen ){      
       return result;
+    }
     cout << "Syntax error: Expected ) found: " << t-> getLex()
 	 << " line: " << t->getLine()
 	 << " col: " << t-> getCol()

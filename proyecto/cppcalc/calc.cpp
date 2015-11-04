@@ -7,11 +7,10 @@ using namespace std;
 
 Calculator* calc;
 
-int main(int argc, char* argv[]) {
+int main(int argc, char* argv[]){
   string line;
 
-  try {
-
+  try{
     cout << "Please enter a calculator expression: ";
 
     getline(cin, line);
@@ -26,7 +25,7 @@ int main(int argc, char* argv[]) {
     delete calc;
 
   }
-  catch(Exception ex) {
+  catch(Exception ex){
     cout << "Program Aborted due to exception!" << endl;
   }
 }
