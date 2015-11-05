@@ -8,7 +8,7 @@ class Token
   end
 end
 
-class LexicalToken < Token
+class LexicalToken < Token #LexicalToken hereda de Token junto con todos los atributos
   attr_reader :lex
   
   def initialize(type,lex,lineNum,colNum)
