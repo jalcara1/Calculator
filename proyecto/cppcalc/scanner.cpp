@@ -7,10 +7,10 @@ using namespace std;
 //Uncomment this to get debug information
 //#define debug
 
-const int numberOfKeywords = 4;
+const int numberOfKeywords = 6;
 
 const string keywd[numberOfKeywords] = {
-  string("S"), string("R"), string("P"), string("M")
+  string("S"), string("R"), string("P"), string("M"), string("C"), string("=")
 };
 
 int isLetter(char c){
@@ -73,6 +73,7 @@ Token* Scanner::getToken(){
       else if(c=='%') state=7;
       else if(c=='(') state=8;
       else if(c==')') state=9;
+      else if(c=='=') state=10;
       else if(c=='\n') {
 	colCount=-1;
 	lineCount++;
@@ -144,6 +145,11 @@ Token* Scanner::getToken(){
       
     case 9 :
       type = rparen;
+      foundOne=true;
+      break;
+
+    case 10 :
+      type = asignacion;
       foundOne=true;
       break;
     }

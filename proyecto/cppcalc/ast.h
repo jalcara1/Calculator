@@ -93,6 +93,12 @@ class RecallNode : public AST{
   int evaluate();
 };
 
+class CleanNode : public AST{
+ public:
+  CleanNode();
+  int evaluate();
+};
+
 
 
 

@@ -123,3 +123,11 @@ RecallNode::RecallNode():AST()
 int RecallNode::evaluate(){
   return calc->recall();
 }
+
+CleanNode::CleanNode():
+  AST()
+{}
+int CleanNode::evaluate(){
+  return calc->Clean();
+}
+  

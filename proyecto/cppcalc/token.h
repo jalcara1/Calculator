@@ -3,7 +3,7 @@
 using namespace std;
 
 enum TokenType{
-  identifier,keyword,number,add,sub,times,divide,modulo,lparen,rparen,eof,unrecognized
+  identifier,keyword,number,add,sub,times,divide,modulo,lparen,rparen,eof,unrecognized, asignacion
 };
 
 class Token{

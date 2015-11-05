@@ -20,6 +20,7 @@ class Calculator{
   
   void store(int val);
   int recall();
+  int Clean();
   int plus(int val);
   int minus(int val);
  private:

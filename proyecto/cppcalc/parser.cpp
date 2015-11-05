@@ -23,7 +23,7 @@ AST* Parser::Prog(){
 
   if(t->getType() != eof){
     cout << "Syntax Error: Expected EOF, found token at column " << t->getCol() << endl;
-    throw ParseError;
+    //    throw ParseError;
   }
   return result;
 }
@@ -128,11 +128,11 @@ AST* Parser::MemOperation(AST* result){
 
     }else{
       cout << " Syntax error: Expected S found: " << t -> getLex()
-	   << "line: " << t->getLine()
-	 << "col: " << t ->getCol()
-	 << endl;
+      	   << "line: " << t->getLine()
+      	 << "col: " << t ->getCol()
+      	 << endl;
     
-      throw ParseError;
+      //      throw ParseError;
     }
   }
   scan ->putBackToken();
@@ -156,13 +156,16 @@ AST* Parser::Factor(){
     if(t->getLex() == "R"){
 
       return new RecallNode();
+    }else if(t->getLex() == "C"){
+
+      return new CleanNode();
     }
     cout << " Syntax error: Expected R found: " << t -> getLex()
 	 << "line: " << t->getLine()
 	 << "col: " << t ->getCol()
 	 << endl;
 
-    throw ParseError;
+    //throw ParseError;
   }
 
   if(t->getType() == lparen){
@@ -176,13 +179,13 @@ AST* Parser::Factor(){
 	 << " col: " << t-> getCol()
 	 << endl;
 
-    throw ParseError;
+    //throw ParseError;
   }
   cout << "Syntax error: Expected number, R, ("
        << " line: " << t->getLine()
        << " col: " << t-> getCol()
        << endl;
 
-  throw ParseError;
+  //throw ParseError;
 }
 

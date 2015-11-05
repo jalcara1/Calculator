@@ -30,6 +30,10 @@ int Calculator::recall(){
   return memory;
 }
 
+int Calculator::Clean(){
+  return 0;
+}
+
 int Calculator::plus(int val){
   memory = memory + val;
   return memory;
