@@ -17,15 +17,57 @@ class UnaryNode
   end
 end
 
+class StoreNode < UnaryNode
+  def initialize(num)
+    @num = num
+  end
+  
+  def
+    evaluate(num)
+  end
+end
+
+class RecallNode
+  def initialize(num)
+    @num = num
+  end
+
+  def
+    evaluate(num)
+  end
+end
+
+
 class AddNode < BinaryNode
   def initialize(left, right)
     super(left,right)
   end
    
   def evaluate() 
-    return @left.evaluate() + @right.evaluate()
+    @left.evaluate() + @right.evaluate()
   end
 end
+
+class DivideNode < BinaryNode
+  def initialize(left, right)
+    super(left,right)
+  end
+   
+  def evaluate() 
+    @left.evaluate() / @right.evaluate()
+  end
+end
+
+class TimesNode < BinaryNode
+  def initialize(left, right)
+    super(left,right)
+  end
+   
+  def evaluate() 
+    @left.evaluate() * @right.evaluate()
+  end
+end
+
 
 class SubNode < BinaryNode
   def initialize(left, right)
@@ -33,7 +75,7 @@ class SubNode < BinaryNode
   end
    
   def evaluate() 
-    return @left.evaluate() - @right.evaluate()
+    @left.evaluate() - @right.evaluate()
   end
 end
       
@@ -43,6 +85,6 @@ class NumNode
   end
    
   def evaluate() 
-    return @num
+    @num
   end
 end
