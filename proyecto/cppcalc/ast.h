@@ -75,7 +75,6 @@ class MinusNode:public UnaryNode{
   int evaluate();
 };
 
-
 class NumNode : public AST {
  public:
   NumNode(int n);
@@ -85,14 +84,12 @@ class NumNode : public AST {
  private:
   int val;
 };
-
 class RecallNode : public AST{
  public:
   RecallNode();
 
   int evaluate();
 };
-
 class CleanNode : public AST{
  public:
   CleanNode();

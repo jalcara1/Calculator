@@ -10,7 +10,7 @@ using namespace std;
 const int numberOfKeywords = 6;
 
 const string keywd[numberOfKeywords] = {
-  string("S"), string("R"), string("P"), string("M"), string("C"), string("=")
+  string("S"), string("R"), string("P"), string("M"), string("C")
 };
 
 int isLetter(char c){
@@ -73,7 +73,6 @@ Token* Scanner::getToken(){
       else if(c=='%') state=7;
       else if(c=='(') state=8;
       else if(c==')') state=9;
-      else if(c=='=') state=10;
       else if(c=='\n') {
 	colCount=-1;
 	lineCount++;
@@ -84,8 +83,8 @@ Token* Scanner::getToken(){
 	type=eof;
       }
       else{
-	cout << "Unrecognized Token found at line " << line <<
-	  " and column " << column << endl;
+	// cout << "Unrecognized Token found at line " << line <<
+	//   " and column " << column << endl;
 	throw UnrecognizedToken;
       }
       break;
@@ -147,11 +146,6 @@ Token* Scanner::getToken(){
       type = rparen;
       foundOne=true;
       break;
-
-    case 10 :
-      type = asignacion;
-      foundOne=true;
-      break;
     }
 
     if(!foundOne){
@@ -169,7 +163,7 @@ Token* Scanner::getToken(){
   }
 
   #ifdef debug
-  cout << "just found " << lex << " with type " << type << endl;
+  //cout << "just found " << lex << " with type " << type << endl;
   #endif
 
   lastToken = t;

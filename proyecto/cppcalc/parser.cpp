@@ -22,8 +22,8 @@ AST* Parser::Prog(){
   Token* t = scan->getToken();
 
   if(t->getType() != eof){
-    cout << "Syntax Error: Expected EOF, found token at column " << t->getCol() << endl;
-    //    throw ParseError;
+    //cout << "Syntax Error: Expected EOF, found token at column " << t->getCol() << endl;
+    throw ParseError;
   }
   return result;
 }
@@ -127,12 +127,12 @@ AST* Parser::MemOperation(AST* result){
       return new MinusNode(result);
 
     }else{
-      cout << " Syntax error: Expected S found: " << t -> getLex()
-      	   << "line: " << t->getLine()
-      	 << "col: " << t ->getCol()
-      	 << endl;
+      // cout << " Syntax error: Expected S found: " << t -> getLex()
+      // 	   << "line: " << t->getLine()
+      // 	 << "col: " << t ->getCol()
+      // 	 << endl;
     
-      //      throw ParseError;
+      throw ParseError;
     }
   }
   scan ->putBackToken();
@@ -142,7 +142,7 @@ AST* Parser::MemOperation(AST* result){
 AST* Parser::Factor(){
   Token* t = scan->getToken();
 
-  cout << t->getType() << endl;
+  //cout << t->getType() << endl;
   
   if(t->getType() == number){
     istringstream in(t->getLex());
@@ -160,12 +160,12 @@ AST* Parser::Factor(){
 
       return new CleanNode();
     }
-    cout << " Syntax error: Expected R found: " << t -> getLex()
-	 << "line: " << t->getLine()
-	 << "col: " << t ->getCol()
-	 << endl;
+    // cout << " Syntax error: Expected R found: " << t -> getLex()
+    // 	 << "line: " << t->getLine()
+    // 	 << "col: " << t ->getCol()
+    // 	 << endl;
 
-    //throw ParseError;
+    throw ParseError;
   }
 
   if(t->getType() == lparen){
@@ -174,18 +174,18 @@ AST* Parser::Factor(){
     if(t->getType() == rparen ){      
       return result;
     }
-    cout << "Syntax error: Expected ) found: " << t-> getLex()
-	 << " line: " << t->getLine()
-	 << " col: " << t-> getCol()
-	 << endl;
+    // cout << "Syntax error: Expected ) found: " << t-> getLex()
+    // 	 << " line: " << t->getLine()
+    // 	 << " col: " << t-> getCol()
+    // 	 << endl;
 
-    //throw ParseError;
+    throw ParseError;
   }
-  cout << "Syntax error: Expected number, R, ("
-       << " line: " << t->getLine()
-       << " col: " << t-> getCol()
-       << endl;
-
-  //throw ParseError;
+  // cout << "Syntax error: Expected number, R, ("
+  //      << " line: " << t->getLine()
+  //      << " col: " << t-> getCol()
+  //      << endl;
+    throw ParseError;
 }
+
 

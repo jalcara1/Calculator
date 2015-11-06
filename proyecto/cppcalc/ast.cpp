@@ -13,7 +13,7 @@ BinaryNode::BinaryNode(AST* left, AST* right):AST(), leftTree(left), rightTree(r
 
 BinaryNode::~BinaryNode(){
   #ifdef debug
-  cout << "In BinaryNode destructor" << endl;
+  //cout << "In BinaryNode destructor" << endl;
   #endif
 
   try{
@@ -38,7 +38,7 @@ UnaryNode::UnaryNode(AST* sub):AST(), subTree(sub)
 
 UnaryNode::~UnaryNode(){
   #ifdef debug
-  cout << "In UnaryNode destructor" << endl;
+  //cout << "In UnaryNode destructor" << endl;
   #endif
 
   try{

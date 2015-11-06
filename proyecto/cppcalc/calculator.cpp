@@ -31,16 +31,17 @@ int Calculator::recall(){
 }
 
 int Calculator::Clean(){
+  memory = 0;
   return 0;
 }
 
 int Calculator::plus(int val){
-  memory = memory + val;
+  memory += val;
   return memory;
 }
 
 
 int Calculator::minus(int val){
-  memory = memory - val;
+  memory -= val;
   return memory;
 }

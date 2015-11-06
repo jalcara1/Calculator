@@ -16,7 +16,7 @@ class Parser{
   AST* RestTerm(AST* t);
   AST* Storable(); 
   AST* MemOperation(AST* result);
-  AST* Factor();
+  AST* Factor(); 
 
   Scanner* scan;
 };
