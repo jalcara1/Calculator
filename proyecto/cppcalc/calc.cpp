@@ -22,6 +22,10 @@ int main(int argc, char* argv[]){
 
       //calc = new Calculator();
 
+      if(cin.eof()){
+	break;
+      }
+
       int result = calc->eval(line);
 
       //cout << "The result is " << result << endl;

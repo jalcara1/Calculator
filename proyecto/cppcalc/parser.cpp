@@ -146,11 +146,17 @@ AST* Parser::Factor(){
   
   if(t->getType() == number){
     istringstream in(t->getLex());
-    int val;
-    in >> val;
-    return new NumNode(val);
+    int numero;
+    in >> numero;
+    return new NumNode(numero);
+    
+  }else if(t->getType() == identifier){
+    istringstream in(t->getLex());
+    string identifier;
+    in >> identifier;
+    return Assignable(identifier);
   }
-
+  
   if(t->getType() == keyword){
 
     if(t->getLex() == "R"){
@@ -188,4 +194,29 @@ AST* Parser::Factor(){
     throw ParseError;
 }
 
+AST* Parser::Assignable(string identifier){
+  Token *t = scan->getToken();
+  
+  if(t->getType() == igual){
+    istringstream in(t->getLex());
+    string igual;
+    in >> igual;
+    return (Assign(igual));
+  }
+  //Sino me vuelve a leer y leer
+  scan ->putBackToken();
+  return new NumNode(number);
 
+AST* Parser::Assign(string igual){
+  Token* t = scan->getToken();
+
+  if(t->getType() == number){
+    istringstream in(t->getLex());
+    int number;
+    in >> number;
+    return new NumNode(number);
+  }
+  //Me vuelve a leer de lo contrario
+  scan->putBackToken();
+  return new NumNode(number);
+}

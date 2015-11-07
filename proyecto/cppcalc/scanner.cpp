@@ -7,7 +7,7 @@ using namespace std;
 //Uncomment this to get debug information
 //#define debug
 
-const int numberOfKeywords = 6;
+const int numberOfKeywords = 5;
 
 const string keywd[numberOfKeywords] = {
   string("S"), string("R"), string("P"), string("M"), string("C")
@@ -73,6 +73,7 @@ Token* Scanner::getToken(){
       else if(c=='%') state=7;
       else if(c=='(') state=8;
       else if(c==')') state=9;
+      else if(c=='=') state=10;
       else if(c=='\n') {
 	colCount=-1;
 	lineCount++;
@@ -134,7 +135,7 @@ Token* Scanner::getToken(){
 
     case 7 :
       type = modulo;
-      foundOne =true;
+      foundOne=true;
       break;
       
     case 8 :
@@ -146,8 +147,12 @@ Token* Scanner::getToken(){
       type = rparen;
       foundOne=true;
       break;
+      
+    case 10 :
+      type = igual;
+      foundOne=true;
+      break;
     }
-
     if(!foundOne){
       lex = lex + c;
       c = inStream->get();
@@ -165,7 +170,7 @@ Token* Scanner::getToken(){
   #ifdef debug
   //cout << "just found " << lex << " with type " << type << endl;
   #endif
-
+ 
   lastToken = t;
   return t;
 

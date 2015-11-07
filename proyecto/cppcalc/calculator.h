@@ -27,4 +27,5 @@ class Calculator{
   int memory;
 
 };
+
 extern Calculator* calc;

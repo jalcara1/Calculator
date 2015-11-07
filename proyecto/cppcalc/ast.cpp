@@ -2,7 +2,7 @@
 #include <iostream>
 #include "calculator.h"
 
-// for debug information uncomment
+//for debug information uncomment
 // #define debug
 
 AST::AST(){}
