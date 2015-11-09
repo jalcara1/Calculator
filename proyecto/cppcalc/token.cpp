@@ -35,4 +35,3 @@ LexicalToken::~LexicalToken(){
 string LexicalToken::getLex()const{
   return *lexeme;
 }
-

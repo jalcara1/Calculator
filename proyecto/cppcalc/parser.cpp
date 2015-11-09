@@ -194,29 +194,24 @@ AST* Parser::Factor(){
     throw ParseError;
 }
 
-AST* Parser::Assignable(string identifier){
-  Token *t = scan->getToken();
+AST* Parser::Assignable(string nombre){
+  
+  return Assign(nombre);
+}
+AST* Parser::Assign(string nombre){
+  
+  Token* t = scan->getToken();
+  NumNode* result = new NumNode(0);
   
   if(t->getType() == igual){
-    istringstream in(t->getLex());
-    string igual;
-    in >> igual;
-    return (Assign(igual));
-  }
-  //Sino me vuelve a leer y leer
-  scan ->putBackToken();
-  return new NumNode(number);
-
-AST* Parser::Assign(string igual){
-  Token* t = scan->getToken();
-
-  if(t->getType() == number){
-    istringstream in(t->getLex());
-    int number;
-    in >> number;
+    scan->putBackToken();
+    t = scan->getToken;
+    result = new NumNode(Expr()->evaluate());
+    
+    Expr(Evaluate(number));
+    int number = t->getType();
     return new NumNode(number);
   }
-  //Me vuelve a leer de lo contrario
-  scan->putBackToken();
-  return new NumNode(number);
+  
+  //Reavisar de lo contrario
 }

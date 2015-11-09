@@ -74,12 +74,13 @@ class MinusNode:public UnaryNode{
   MinusNode(AST* sub);
   int evaluate();
 };
-
 class NumNode : public AST {
  public:
   NumNode(int n);
 
   int evaluate();
+  int encontrar();
+  int assignate();
 
  private:
   int val;
@@ -95,9 +96,3 @@ class CleanNode : public AST{
   CleanNode();
   int evaluate();
 };
-
-
-
-
-
-

@@ -1,5 +1,6 @@
 #pragma once // evita que se incluya dos veces un fichero
 #include <string>
+#include <map>
 using namespace std;
 
 class Calculator{
@@ -23,8 +24,12 @@ class Calculator{
   int Clean();
   int plus(int val);
   int minus(int val);
+  void crearVar(string nombre, int valor); //Crear variable
+  int getVariables();
+  
  private:
   int memory;
+  map<string,int>variables;
 
 };
 
