@@ -87,22 +87,22 @@ AST* Parser::RestTerm(AST* e){
 
 AST* Parser::Storable(){
 
-  // Token *t = scan->getToken();
+  //   Token *t = scan->getToken();
 
-  // if(t->getType() == keyword){
+  //   if(t->getType() == keyword){
 
-  //   if(t->getLex() == "S"){
+  // if(t->getLex() == "S"){
 
-  //     return new StoreNode(result);
-  //   }
+  //   return new StoreNode(result);
+  // }
   //   cout << " Syntax error: Expected S found: " << t -> getLex()
   // 	 << "line: " << t->getLine()
   // 	 << "col: " << t ->getCol()
   // 	 << endl;
 
-  //   throw ParseError;
+  // throw ParseError;
   // }
-  // scan ->putBackToken();
+  //scan ->putBackToken();
 
   return MemOperation(Factor());
 
@@ -114,8 +114,8 @@ AST* Parser::MemOperation(AST* result){
 
   if(t->getType() == keyword){
 
-    if(t->getLex() == "S"){
-
+      if(t->getLex() == "S"){
+    
       return new StoreNode(result);
       
     }else if(t->getLex() == "P"){
@@ -194,9 +194,9 @@ AST* Parser::Factor(){
   throw ParseError;
 }
 
-AST* Parser::Assignable(string nombre){
+AST* Parser::Assignable(string identifier){
   
-  return Assign(nombre);
+  return Assign(identifier);
 }
 AST* Parser::Assign(string nombre){
   
@@ -205,7 +205,7 @@ AST* Parser::Assign(string nombre){
   
   if(t->getType() == igual){
     scan->putBackToken();
-    //t = scan->getToken;
+    t = scan->getToken;
     result = new NumNode(Expr()->evaluate());
     result->assignate(nombre,result->evaluate());
   }else{
@@ -217,7 +217,3 @@ AST* Parser::Assign(string nombre){
   scan->putBackToken();
   return result;
 }
-
-
-//
-//

@@ -112,7 +112,6 @@ int MinusNode::evaluate(){
 NumNode::NumNode(int n):AST(), val(n)
 {}
 
-
 int NumNode::evaluate(){
   return val;
 }
@@ -122,8 +121,8 @@ bool NumNode::encontrar(string nombre){
 }
 
 int NumNode::assignate(string nombre, int prueba){
-  return 23;
-} 
+  return 0;
+}
 
 RecallNode::RecallNode():AST()
 {}

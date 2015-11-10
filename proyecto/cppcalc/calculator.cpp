@@ -60,6 +60,4 @@ int Calculator::getVariables(string nombre){
     return variables.at(nombre);
   }
   return 0;
-
 }
-
