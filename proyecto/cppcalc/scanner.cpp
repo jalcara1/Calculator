@@ -25,9 +25,8 @@ int isWhiteSpace(char c){
   return (c == ' ' || c == '\t' || c == '\n' || c == '\r');
 }
 
-Scanner::Scanner(istream* in):inStream(in), lineCount(1), colCount(-1),
-			      needToken(true), lastToken(0)
-{}
+Scanner::Scanner(istream* in):inStream(in), lineCount(1), colCount(-1),needToken(true), lastToken(0){
+}
 
 Scanner::~Scanner(){
   try{

@@ -105,7 +105,6 @@ AST* Parser::Storable(){
   //scan ->putBackToken();
 
   return MemOperation(Factor());
-
 }
 
 AST* Parser::MemOperation(AST* result){
@@ -205,7 +204,7 @@ AST* Parser::Assign(string nombre){
   
   if(t->getType() == igual){
     scan->putBackToken();
-    t = scan->getToken;
+    //t = scan->getToken;
     result = new NumNode(Expr()->evaluate());
     result->assignate(nombre,result->evaluate());
   }else{

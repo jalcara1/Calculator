@@ -59,5 +59,5 @@ int Calculator::getVariables(string nombre){
   if(variables.count(nombre) ==1){
     return variables.at(nombre);
   }
-  return 0;
+  return 10;
 }
