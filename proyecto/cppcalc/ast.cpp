@@ -117,6 +117,14 @@ int NumNode::evaluate(){
   return val;
 }
 
+bool NumNode::encontrar(string nombre){
+  return 0;
+}
+
+int NumNode::assignate(string nombre, int prueba){
+  return 23;
+} 
+
 RecallNode::RecallNode():AST()
 {}
 
@@ -130,4 +138,3 @@ CleanNode::CleanNode():
 int CleanNode::evaluate(){
   return calc->Clean();
 }
-  

@@ -8,8 +8,8 @@ using namespace std;
 Calculator* calc;
 
 int main(int argc, char* argv[]){
+  
   string line;
-
   calc = new Calculator();
 
   while(true, cout << ">"){

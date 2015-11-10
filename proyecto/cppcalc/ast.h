@@ -1,4 +1,6 @@
 #pragma once // permite decir que solo se va a añadir una vez
+
+#include <string>
 using namespace std;
 
 class AST{ 
@@ -74,24 +76,24 @@ class MinusNode:public UnaryNode{
   MinusNode(AST* sub);
   int evaluate();
 };
-class NumNode : public AST {
+class NumNode:public AST {
  public:
   NumNode(int n);
 
   int evaluate();
-  int encontrar();
-  int assignate();
+  bool encontrar(string nombre);
+  int assignate(string nombre, int prueba);
 
  private:
   int val;
 };
-class RecallNode : public AST{
+class RecallNode:public AST{
  public:
   RecallNode();
 
   int evaluate();
 };
-class CleanNode : public AST{
+class CleanNode:public AST{
  public:
   CleanNode();
   int evaluate();

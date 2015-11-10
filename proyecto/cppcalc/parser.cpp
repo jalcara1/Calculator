@@ -191,7 +191,7 @@ AST* Parser::Factor(){
   //      << " line: " << t->getLine()
   //      << " col: " << t-> getCol()
   //      << endl;
-    throw ParseError;
+  throw ParseError;
 }
 
 AST* Parser::Assignable(string nombre){
@@ -205,13 +205,19 @@ AST* Parser::Assign(string nombre){
   
   if(t->getType() == igual){
     scan->putBackToken();
-    t = scan->getToken;
+    //t = scan->getToken;
     result = new NumNode(Expr()->evaluate());
-    
-    Expr(Evaluate(number));
-    int number = t->getType();
-    return new NumNode(number);
+    result->assignate(nombre,result->evaluate());
+  }else{
+    int prueba = result->encontrar(nombre);
+    result = new NumNode(prueba);
+    result->assignate(nombre,prueba);
   }
-  
-  //Reavisar de lo contrario
+
+  scan->putBackToken();
+  return result;
 }
+
+
+//
+//

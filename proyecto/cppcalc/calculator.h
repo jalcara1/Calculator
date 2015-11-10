@@ -25,7 +25,7 @@ class Calculator{
   int plus(int val);
   int minus(int val);
   void crearVar(string nombre, int valor); //Crear variable
-  int getVariables();
+  int getVariables(string nombre);
   
  private:
   int memory;

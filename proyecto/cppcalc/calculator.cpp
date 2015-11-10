@@ -48,17 +48,16 @@ int Calculator::minus(int val){
 
 void Calculator::crearVar(string nombre, int valor){
   if(variables.count(nombre) ==1){
-    variable[nombre] =valor;
+    variables[nombre] =valor;
   }else{
-    variables.inserta(pair<string,int>(nombre,valor));
+    variables.insert(pair<string,int>(nombre,valor));
   }
 }
 
-int Calculator::getVariables(){
+int Calculator::getVariables(string nombre){
 
-  if(variabless.count(nombre) ==1){
-    int die = 10;
-    return varialbes.at(nombre);
+  if(variables.count(nombre) ==1){
+    return variables.at(nombre);
   }
   return 0;
 
