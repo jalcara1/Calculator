@@ -1,14 +1,15 @@
 require 'stringio'
 require 'calcex'
+require 'set'
 
 class Scanner
   def initialize(inStream)
     @istream = inStream
-    @keywords = Set.new(["S","R"])
+    @keywords = Set.new(["S","R"])#Arreglo que busca sin mirar las repetidas
     @lineCount = 1
     @colCount = -1
     @needToken = true
-    @lastToken = nil
+    @lastToken = nil #objeto null
   end
   
   def putBackToken()

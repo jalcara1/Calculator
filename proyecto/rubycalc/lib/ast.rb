@@ -18,22 +18,18 @@ class UnaryNode
 end
 
 class StoreNode < UnaryNode
-  def initialize(num)
-    @num = num
+  def initialize(sub)
+    super(sub)
   end
   
-  def
-    evaluate(num)
+  def evaluate
+    $calc.memory = subTree.evaluate
   end
 end
 
 class RecallNode
-  def initialize(num)
-    @num = num
-  end
-
-  def
-    evaluate(num)
+  def evaluate
+    $calc.memory
   end
 end
 
