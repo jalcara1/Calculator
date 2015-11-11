@@ -18,7 +18,7 @@ class Parser{
   AST* MemOperation(AST* result);
   AST* Factor();
   AST* Assignable(string identifier);
-  AST* Assign(string igual);
+  AST* Assign(string nombre);
   
   Scanner* scan;
 };

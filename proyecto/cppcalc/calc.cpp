@@ -12,7 +12,7 @@ int main(int argc, char* argv[]){
   string line;
   calc = new Calculator();
 
-  while(true, cout << ">"){
+  while(cout << ">"){
   
     try{
       //cout << "Please enter a calculator expression: ";

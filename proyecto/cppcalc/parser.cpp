@@ -194,25 +194,31 @@ AST* Parser::Factor(){
 }
 
 AST* Parser::Assignable(string identifier){
-  
-  return Assign(identifier);
+
+  return  (Assign(identifier));
 }
+
 AST* Parser::Assign(string nombre){
+  Token *t = scan -> getToken();
   
-  Token* t = scan->getToken();
   NumNode* result = new NumNode(0);
   
-  if(t->getType() == igual){
-    scan->putBackToken();
-    //t = scan->getToken;
-    result = new NumNode(Expr()->evaluate());
-    result->assignate(nombre,result->evaluate());
+  if(t -> getType() == igual){
+    
+    scan -> putBackToken();
+    t = scan -> getToken();
+    
+    result = new NumNode(Expr() -> evaluate());
+    result -> assignate(nombre,result -> evaluate());
+    
   }else{
-    int prueba = result->encontrar(nombre);
-    result = new NumNode(prueba);
-    result->assignate(nombre,prueba);
+    
+    int prueba = result -> encontrar(nombre);
+    
+    cout <<"else prueba " <<  prueba << endl;
+    result  =  new NumNode(prueba);
+    result -> assignate(nombre,prueba);
   }
-
-  scan->putBackToken();
+  scan -> putBackToken();
   return result;
 }

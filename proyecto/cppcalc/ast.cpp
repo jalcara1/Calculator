@@ -1,12 +1,11 @@
-#include "ast.h"
 #include <iostream>
+#include "ast.h"
 #include "calculator.h"
 
 //for debug information uncomment
 // #define debug
 
-AST::AST(){}
-AST::~AST(){}
+AST::AST(){}  AST::~AST(){}
 
 BinaryNode::BinaryNode(AST* left, AST* right):AST(), leftTree(left), rightTree(right)
 {}
