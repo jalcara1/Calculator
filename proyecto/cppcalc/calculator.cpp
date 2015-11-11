@@ -23,7 +23,7 @@ int Calculator::eval(string expr){
 }
 
 void Calculator::store(int val){
-  memory = val;
+  memory =val;
 }
 
 int Calculator::recall(){
@@ -31,18 +31,18 @@ int Calculator::recall(){
 }
 
 int Calculator::Clean(){
-  memory = 0;
+  memory =0;
   return 0;
 }
 
 int Calculator::plus(int val){
-  memory += val;
+  memory +=val;
   return memory;
 }
 
 
 int Calculator::minus(int val){
-  memory -= val;
+  memory -=val;
   return memory;
 }
 

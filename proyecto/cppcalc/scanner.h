@@ -15,5 +15,5 @@ class Scanner{
   int lineCount;
   int colCount;
   bool needToken;
-  Token* lastToken;
+  Token* lastToken;  
 };

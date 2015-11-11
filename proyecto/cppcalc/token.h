@@ -6,7 +6,7 @@ enum TokenType{
   identifier,keyword,number,add,sub,times,divide,modulo,lparen,rparen,eof,unrecognized, asignacion,igual
 };
 
-class Token{
+class Token{  
  public:
   Token();
   Token(TokenType typ, int line, int col);

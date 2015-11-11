@@ -1,7 +1,7 @@
-#include "scanner.h"
-#include "calcex.h"
 #include <iostream>
 #include <string>
+#include "scanner.h"
+#include "calcex.h"
 using namespace std;
 
 //Uncomment this to get debug information

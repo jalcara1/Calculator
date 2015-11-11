@@ -12,8 +12,7 @@ int main(int argc, char* argv[]){
   string line;
   calc = new Calculator();
 
-  while(cout << ">"){
-  
+  while(cout << ">"){  
     try{
       //cout << "Please enter a calculator expression: ";
     
@@ -33,7 +32,7 @@ int main(int argc, char* argv[]){
 
       //delete calc;
     
-    }catch(Exception ex){
+    }catch(Exception e){
       cout << "* parse error" << endl;
     }
   }
