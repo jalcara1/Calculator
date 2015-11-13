@@ -49,33 +49,79 @@ class Parser
     # Write your Term() code here. This code is just temporary
     # so you can try the calculator out before finishing it.
     
-    t = @scan.getToken()
+    # t = @scan.getToken()
     
-    if t.type == :number then
-      val = t.lex.to_i
-      return NumNode.new(val)
-    end
+    # if t.type == :number then
+    #   val = t.lex.to_i
+    #   return NumNode.new(val)
+    # end
     
-    puts "Term not implemented\n"
+    # puts "Term not implemented\n"
     
-    raise ParseError.new
+    # raise ParseError.new
+    RestTerm(Storable())
   end
    
   def RestTerm(e)
-    
-    puts "RestTerm not implemented"
-    raise ParseError.new # "Parse Error"
+    t = @scan.getToken()
+    if t.type == :times then
+      return RestTerm(TimesNode.new(e,Storable()))
+    end
+
+    if t.type == :divide then
+      return RestTerm(DivideNode.new(e, Storable()))
+    end    
+    @scan.putBackToken
+    return e
+    # puts "RestTerm not implemented"
+    # raise ParseError.new # "Parse Error"
   end
-   
+
   def Storable()
-   
-    puts "Storable not implemented"
-    raise ParseError.new # "Parse Error"
+    result = Factor()
+    t = @scan.getToken  #obtener un token
+
+    if t.type == :keyword then
+      if t.lex == "S" then
+        return StoreNode.new(result)
+      end
+      puts "Expected s found: "+t.lex.to_s
+      raise ParseError.new
+    end
+    @scan.putBackToken()  #Devuelve el caracter ingresado
+    return result
+    # puts "Storable not implemented"
+    # raise ParseError.new # "Parse Error"
   end
    
   def Factor() 
-    
-    puts "Factor not implemented"
-    raise ParserError.new # "Parse Error"
+    t = @scan.getToken    
+    if t.type == :number then
+      return NumNode.new(t.lex.to_i)
+    end
+
+    if t.type == :keyword then
+      if t.lex == "R" then
+        return RecallNode.new
+      end
+      puts "Expected R found: " + t.lex
+      raise ParseError.new
+    end
+
+    if t.type == :lparen then
+      result = Expr()
+      t = @scan.getToken
+      if t.type == :rparen then
+        return result
+      end
+      puts "Expected ) found: " + t.type.to_s
+      raise ParseError.new
+    end
+
+    puts "Expected number, R, ( found: " + t.type.to_s
+    raise ParseError.new
+        
+    # puts "Factor not implemented"
+    # raise ParserError.new # "Parse Error"
   end         
 end

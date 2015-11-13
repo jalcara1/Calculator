@@ -1,9 +1,12 @@
 require 'parser'
 require 'ast'
+require 'stringio'
 
-class Calculator
-  attr_reader :memory
-  attr_writer :memory
+class Calculator  
+  attr_accessor :memory
+  
+  # attr_reader :memory
+  # attr_writer :memory
   
   def initialize()
     @memory = 0
