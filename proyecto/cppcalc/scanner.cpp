@@ -12,38 +12,30 @@ const int numberOfKeywords = 5;
 const string keywd[numberOfKeywords] = {
   string("S"), string("R"), string("P"), string("M"), string("C")
 };
-
 int isLetter(char c){
   return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
 }
-
 int isDigit(char c){
   return (c >= '0' && c <= '9');
 }
-
 int isWhiteSpace(char c){
   return (c == ' ' || c == '\t' || c == '\n' || c == '\r');
 }
-
 Scanner::Scanner(istream* in):inStream(in), lineCount(1), colCount(-1),needToken(true), lastToken(0){
 }
-
 Scanner::~Scanner(){
   try{
     delete inStream;
   }catch(...){}
 }
-
 void Scanner::putBackToken(){
   needToken = false;
 }
-
 Token* Scanner::getToken(){
   if(!needToken){
     needToken=true;
     return lastToken;
   }
-
   Token* t;
   int state=0;
   bool foundOne=false;
@@ -157,7 +149,6 @@ Token* Scanner::getToken(){
       c = inStream->get();
     }
   }
-
   inStream->putback(c);
   colCount--;
   if(type == number || type == identifier || type == keyword){
@@ -165,12 +156,10 @@ Token* Scanner::getToken(){
   }else{
     t = new Token(type,line,column);
   }
-
   #ifdef debug
   //cout << "just found " << lex << " with type " << type << endl;
   #endif
  
   lastToken = t;
   return t;
-
 }

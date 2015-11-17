@@ -1,6 +1,5 @@
 #include <iostream>
 #include "ast.h"
-#include "calculator.h"
 using namespace std;
 
 //for debug information uncomment
@@ -119,12 +118,14 @@ int NumNode::evaluate(){
 
 int NumNode::encontrar(string nombre){
   cout << "Encontrar " << endl;
-  return 5;
+  int valor = calc->getVariables(nombre);
+  return valor;
 }
 
-int NumNode::assignate(string nombre, int prueba){
-  cout << "Assignate " << endl;
-  return 9;
+void NumNode::assignate(string nombre, int valor){
+
+  cout << "En assignate" << endl;
+  calc->crearVar(nombre, valor);
 }
 
 RecallNode::RecallNode():AST()

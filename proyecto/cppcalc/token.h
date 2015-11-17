@@ -21,7 +21,7 @@ class Token{
   int line,col;
 };
 
-class LexicalToken:public Token {
+class LexicalToken:public Token{
  public:
   LexicalToken(TokenType typ, string* lex, int line, int col);
   ~LexicalToken();

@@ -1,6 +1,7 @@
 #pragma once // permite decir que solo se va a añadir una vez
 
 #include <string>
+#include "calculator.h"
 using namespace std;
 
 class AST{ 
@@ -82,7 +83,7 @@ class NumNode:public AST {
 
   int evaluate();
   int encontrar(string nombre);
-  int assignate(string nombre, int prueba);
+  void assignate(string nombre, int prueba);
 
  private:
   int val;
