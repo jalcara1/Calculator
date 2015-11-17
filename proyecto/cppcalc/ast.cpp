@@ -112,19 +112,19 @@ NumNode::NumNode(int n):AST(), val(n)
 {}
 
 int NumNode::evaluate(){
-  cout << "En evaluate "<< val << endl;
+  //cout << "En evaluate "<< val << endl;
   return val;
 }
 
 int NumNode::encontrar(string nombre){
-  cout << "Encontrar " << endl;
+  //cout << "Encontrar " << endl;
   int valor = calc->getVariables(nombre);
   return valor;
 }
 
 void NumNode::assignate(string nombre, int valor){
 
-  cout << "En assignate" << endl;
+  //cout << "En assignate" << endl;
   calc->crearVar(nombre, valor);
 }
 

@@ -1,17 +1,38 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <fstream>
 #include "calcex.h"
 #include "calculator.h"
 using namespace std;
 
 Calculator* calc;
+const int MAXBUF = 256;
 
 int main(int argc, char* argv[]){
   
   string line;
+  int result;
   calc = new Calculator();
 
+  char buffer[MAXBUF];
+  ifstream filein("prueba.txt");//Fichero de entrada
+
+  while (filein.getline(buffer,MAXBUF)) {
+
+    string buffer2(buffer);
+    istringstream ins(buffer2);
+
+    string valorLinea;
+    ins >> valorLinea;
+
+    result = calc->eval(valorLinea);
+
+    if(ins){
+      cout << result << endl;
+    }
+
+  }
   while(cout << ">"){  
     try{
       //cout << "Please enter a calculator expression: ";
@@ -25,10 +46,13 @@ int main(int argc, char* argv[]){
 	break;
       }
 
-      int result = calc->eval(line);
+      result = calc->eval(line);
 
       //cout << "The result is " << result << endl;
+
+      cout << "Antes del result" << endl;
       cout << result << endl;
+      cout << "Despues del result" << endl;
 
       //delete calc;
     

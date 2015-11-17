@@ -200,29 +200,33 @@ AST* Parser::Assignable(string identifier){
   return  (Assign(identifier));
 }
 
-AST* Parser::Assign(string nombre){
-  Token *t = scan -> getToken();
-  
+AST* Parser::Assign(string nombre){  
+  Token *t = scan -> getToken();  
   NumNode* result = new NumNode(0);
+
+  int valor;  
 
   if(t -> getType() == igual){
 
-    cout <<"En if Assign" << endl;
+    //cout <<"En if Assign" << endl;
     
     scan -> putBackToken();
     t = scan -> getToken();
     
     result = new NumNode(Expr() -> evaluate());
     result -> assignate(nombre,result -> evaluate());
+    valor = result -> encontrar(nombre);
+    cout << nombre << "<-" << valor << endl;
+    
     
   }else{
     
-    int valor = result -> encontrar(nombre);
-    cout << "En else Assign" << endl;
+    valor = result -> encontrar(nombre);
+    //cout << "En else Assign" << endl;
     result  =  new NumNode(valor);
     //result -> assignate(nombre,prueba);
 
-    cout << "Varlor de la variable: " << valor << endl;
+    //cout << "Varlor de la variable: " << valor << endl;
     
   }
   scan -> putBackToken();  
