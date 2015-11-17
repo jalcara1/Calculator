@@ -47,6 +47,7 @@ int Calculator::minus(int val){
 }
 
 void Calculator::crearVar(string nombre, int valor){
+  cout << "en crearVar calculator" << endl;
   if(variables.count(nombre) ==1){
     variables[nombre] =valor;
   }else{
@@ -55,6 +56,8 @@ void Calculator::crearVar(string nombre, int valor){
 }
 
 int Calculator::getVariables(string nombre){
+
+  cout << "En getVarialbes calculator" << endl;
 
   if(variables.count(nombre) ==1){
     return variables.at(nombre);

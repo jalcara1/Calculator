@@ -81,7 +81,7 @@ class NumNode:public AST {
   NumNode(int n);
 
   int evaluate();
-  bool encontrar(string nombre);
+  int encontrar(string nombre);
   int assignate(string nombre, int prueba);
 
  private:

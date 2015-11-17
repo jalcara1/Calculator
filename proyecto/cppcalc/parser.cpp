@@ -1,7 +1,9 @@
 #include "parser.h"
 #include "calcex.h"
+#include "ast.h"
 #include <string>
 #include <sstream>
+using namespace std;
 
 Parser::Parser(istream* in){
   scan = new Scanner(in);
@@ -202,23 +204,28 @@ AST* Parser::Assign(string nombre){
   Token *t = scan -> getToken();
   
   NumNode* result = new NumNode(0);
-  
+
   if(t -> getType() == igual){
+
+    cout <<"Assing el if" << endl;
     
     scan -> putBackToken();
     t = scan -> getToken();
     
     result = new NumNode(Expr() -> evaluate());
+    cout << "Valor de result" << result << endl;
     result -> assignate(nombre,result -> evaluate());
     
   }else{
     
     int prueba = result -> encontrar(nombre);
-    
-    cout <<"else prueba " <<  prueba << endl;
+    cout << "Valor de result" << result << endl;
+    cout <<"prueba else " <<  prueba << "  ()" << endl;
     result  =  new NumNode(prueba);
     result -> assignate(nombre,prueba);
   }
   scan -> putBackToken();
+
+  
   return result;
 }
