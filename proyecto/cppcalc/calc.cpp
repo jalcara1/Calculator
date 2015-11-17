@@ -10,29 +10,34 @@ Calculator* calc;
 const int MAXBUF = 256;
 
 int main(int argc, char* argv[]){
+
+  int cont =0;
   
   string line;
   int result;
   calc = new Calculator();
+  
+  //  while(cont < argc){
+    
+    char buffer[MAXBUF];
+    ifstream filein(argv[0]);//argv[cont]);//Fichero de entrada
 
-  char buffer[MAXBUF];
-  ifstream filein("prueba.txt");//Fichero de entrada
+    while (filein.getline(buffer,MAXBUF)) {
 
-  while (filein.getline(buffer,MAXBUF)) {
+      string buffer2(buffer);
+      istringstream ins(buffer2);
 
-    string buffer2(buffer);
-    istringstream ins(buffer2);
+      string valorLinea;
+      ins >> valorLinea;
 
-    string valorLinea;
-    ins >> valorLinea;
+      result = calc->eval(valorLinea);
 
-    result = calc->eval(valorLinea);
-
-    if(ins){
-      cout << result << endl;
+      if(ins){
+	cout << result << endl;
+      }
     }
-
-  }
+    //cont++;
+    //}
   while(cout << ">"){  
     try{
       //cout << "Please enter a calculator expression: ";
@@ -60,7 +65,5 @@ int main(int argc, char* argv[]){
       cout << "* parse error" << endl;
     }
   }
-  delete calc;
-  
+  delete calc;  
 }
-
