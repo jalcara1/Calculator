@@ -210,13 +210,13 @@ AST* Parser::Assign(string nombre){
 
     //cout <<"En if Assign" << endl;
     
-    scan -> putBackToken();
-    t = scan -> getToken();
+    // scan -> putBackToken();
+    // t = scan -> getToken();
     
     result = new NumNode(Expr() -> evaluate());
     result -> assignate(nombre,result -> evaluate());
-    valor = result -> encontrar(nombre);
-    cout << nombre << "<-" << valor << endl;
+    // valor = result -> encontrar(nombre);
+    // cout << nombre << "<-" << valor << endl;
     
     
   }else{
