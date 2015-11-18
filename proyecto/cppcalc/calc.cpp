@@ -32,30 +32,20 @@ int main(int argc, char* argv[]){
 
       if(esFichero == true){
 	char buffer[MAXBUF];
-	ifstream filein(argv[cont]);//Fichero de entrada
+	ifstream ficheros(argv[cont]);//Fichero de entrada
 
-	while (filein.getline(buffer,MAXBUF)) {
-	  try{
-	  
-	    istringstream ins(buffer);
-
-	    string valorLinea;
-	    ins >> valorLinea;
-
-	    //cout << "En el cout: " << valorLinea << endl;
-
+	while (ficheros.getline(buffer,MAXBUF)) {
+	  try{	  
+	    
+	    string valorLinea(buffer);
 	    result = calc->eval(valorLinea);
 
-	    if(ins){
-	    
-	      if(calc->getSalida() != ""){
-		cout << "=> "<< result;
-		cout << " [" << calc->getSalida() << "]" << endl;
-		calc->limpiarSalida();
-	      }else{
-		cout << "=> " << result << endl;
-	      }
-	    
+	    if(calc->getSalida() != ""){
+	      cout << "=> "<< result;
+	      cout << " [" << calc->getSalida() << "]" << endl;
+	      calc->limpiarSalida();
+	    }else{
+	      cout << "=> " << result << endl;	    
 	    }
 	  }catch(Exception e){
 	    cout << "* parse error" << endl;
