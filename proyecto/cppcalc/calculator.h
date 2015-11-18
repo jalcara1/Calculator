@@ -15,9 +15,13 @@ class Calculator{
   int minus(int val);
   void crearVar(string nombre, int valor); //Crear variable
   int getVariables(string nombre);
+  string salida(string nombre, string vallor);
+  string getSalida();
+  void limpiarSalida();
   
  private:
   int memory;
+  string salidaF;
   map<string,int>variables;
 
 };

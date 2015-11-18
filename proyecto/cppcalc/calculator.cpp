@@ -4,6 +4,7 @@
 #include <string>
 #include <iostream>
 #include <sstream>
+using namespace std;
 
 Calculator::Calculator():memory(0){
 }
@@ -47,6 +48,10 @@ int Calculator::minus(int val){
 }
 
 void Calculator::crearVar(string nombre, int valor){
+
+  string vallor =  static_cast<ostringstream*>(&(ostringstream() << valor))->str();
+
+  salida(nombre, vallor);
   
   if(variables.count(nombre) ==1){
      variables[nombre] =valor;
@@ -61,6 +66,26 @@ int Calculator::getVariables(string nombre){
     return variables[nombre];
   }else{
     return 0;
-  }
-  
+  }  
 }
+
+string Calculator::salida(string nombre, string valor){
+
+  if(salidaF == ""){
+    salidaF = salidaF + nombre + " <- " + valor;
+  }else{
+    salidaF += ", " + nombre + " <- " + valor;    
+  }
+  return salidaF;
+
+}
+
+string Calculator::getSalida(){
+  return salidaF;
+}
+
+void Calculator::limpiarSalida(){
+  salidaF = "";
+}
+
+			      

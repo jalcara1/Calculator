@@ -7,11 +7,11 @@
 using namespace std;
 
 Calculator* calc;
-const int MAXBUF = 256;
 
 int main(int argc, char* argv[]){
 
   int cont =1;
+  int MAXBUF = 256;
   
   string line;
   int result;
@@ -25,8 +25,8 @@ int main(int argc, char* argv[]){
 
       while (filein.getline(buffer,MAXBUF)) {
 	try{
-	  string buffer2(buffer);
-	  istringstream ins(buffer2);
+	  
+	  istringstream ins(buffer);
 
 	  string valorLinea;
 	  ins >> valorLinea;
@@ -34,7 +34,15 @@ int main(int argc, char* argv[]){
 	  result = calc->eval(valorLinea);
 
 	  if(ins){
-	    cout << "=> " << result << endl;
+	    
+	    if(calc->getSalida() != ""){
+	      cout << "=> "<< result;
+	      cout << " [" << calc->getSalida() << "]" << endl;
+	      calc->limpiarSalida();
+	    }else{
+	      cout << "=> " << result << endl;
+	    }
+	    
 	  }
 	}catch(Exception e){
 	  cout << "* parse error" << endl;
@@ -52,12 +60,21 @@ int main(int argc, char* argv[]){
 	}
 
 	result = calc->eval(line);
-
-	cout << "=> " << result << endl;
+	
+	if(calc->getSalida() != ""){
+	  cout << "=> "<< result;
+	  cout << " [" << calc->getSalida() << "]" << endl;
+	  calc->limpiarSalida();
+	}else{
+	  cout << "=> " << result << endl;	  
+	}
+	  
+	
       }catch(Exception e){
 	cout << "* parse error" << endl;
       }
     }
   }
-  delete calc;  
+  delete calc;
+  return 0;
 }
