@@ -11,7 +11,10 @@ Calculator* calc;
 int main(int argc, char* argv[]){
 
   int cont =1;
+  bool esFichero = false;
+  string fichero;
   int MAXBUF = 256;
+  
   
   string line;
   int result;
@@ -19,34 +22,45 @@ int main(int argc, char* argv[]){
 
   if(argc > 1){  
     while(cont < argc){
-    
-      char buffer[MAXBUF];
-      ifstream filein(argv[cont]);//Fichero de entrada
 
-      while (filein.getline(buffer,MAXBUF)) {
-	try{
+      fichero = argv[cont];
+      for(int i =1; i< fichero.size();i++){
+	if(fichero[i] == '.'){
+	  esFichero = true;
+	}
+      }
+
+      if(esFichero == true){
+	char buffer[MAXBUF];
+	ifstream filein(argv[cont]);//Fichero de entrada
+
+	while (filein.getline(buffer,MAXBUF)) {
+	  try{
 	  
-	  istringstream ins(buffer);
+	    istringstream ins(buffer);
 
-	  string valorLinea;
-	  ins >> valorLinea;
+	    string valorLinea;
+	    ins >> valorLinea;
 
-	  result = calc->eval(valorLinea);
+	    //cout << "En el cout: " << valorLinea << endl;
 
-	  if(ins){
+	    result = calc->eval(valorLinea);
+
+	    if(ins){
 	    
-	    if(calc->getSalida() != ""){
-	      cout << "=> "<< result;
-	      cout << " [" << calc->getSalida() << "]" << endl;
-	      calc->limpiarSalida();
-	    }else{
-	      cout << "=> " << result << endl;
+	      if(calc->getSalida() != ""){
+		cout << "=> "<< result;
+		cout << " [" << calc->getSalida() << "]" << endl;
+		calc->limpiarSalida();
+	      }else{
+		cout << "=> " << result << endl;
+	      }
+	    
 	    }
-	    
-	  }
-	}catch(Exception e){
-	  cout << "* parse error" << endl;
-	}      
+	  }catch(Exception e){
+	    cout << "* parse error" << endl;
+	  }      
+	}
       }
       cont++;
     }
