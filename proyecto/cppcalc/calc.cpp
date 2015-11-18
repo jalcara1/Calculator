@@ -44,28 +44,16 @@ int main(int argc, char* argv[]){
     }
   }else{
     while(cout << ">"){  
-      try{
-	//cout << "Please enter a calculator expression: ";
-    
+      try{    
 	getline(cin, line);
-	// line + '\n';
-
-	//calc = new Calculator();
-
+	
 	if(cin.eof()){
 	  break;
 	}
 
 	result = calc->eval(line);
 
-	//cout << "The result is " << result << endl;
-
-	//cout << "Antes del result" << endl;
 	cout << "=> " << result << endl;
-	//cout << "Despues del result" << endl;
-
-	//delete calc;
-    
       }catch(Exception e){
 	cout << "* parse error" << endl;
       }

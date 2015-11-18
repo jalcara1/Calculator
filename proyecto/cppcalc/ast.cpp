@@ -2,18 +2,12 @@
 #include "ast.h"
 using namespace std;
 
-//for debug information uncomment
-// #define debug
-
 AST::AST(){}  AST::~AST(){}
 
 BinaryNode::BinaryNode(AST* left, AST* right):AST(), leftTree(left), rightTree(right)
 {}
 
 BinaryNode::~BinaryNode(){
-  #ifdef debug
-  //cout << "In BinaryNode destructor" << endl;
-  #endif
 
   try{
     delete leftTree;
@@ -36,10 +30,6 @@ UnaryNode::UnaryNode(AST* sub):AST(), subTree(sub)
 {}
 
 UnaryNode::~UnaryNode(){
-  #ifdef debug
-  //cout << "In UnaryNode destructor" << endl;
-  #endif
-
   try{
     delete subTree;
   }catch(...){}
@@ -112,19 +102,16 @@ NumNode::NumNode(int n):AST(), val(n)
 {}
 
 int NumNode::evaluate(){
-  //cout << "En evaluate "<< val << endl;
   return val;
 }
 
 int NumNode::encontrar(string nombre){
-  //cout << "Encontrar " << endl;
   int valor = calc->getVariables(nombre);
   return valor;
 }
 
 void NumNode::assignate(string nombre, int valor){
-
-  //cout << "En assignate" << endl;
+  
   calc->crearVar(nombre, valor);
 }
 

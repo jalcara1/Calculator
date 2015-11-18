@@ -7,18 +7,7 @@ class Calculator{
  public:
   Calculator();
 
-  int eval(string flujo);
-  
-  /*
-   *Para borrar solo mirar como funciona
-   
-   *Parser* parser = new Parser(new istringstream(expr));
-
-   *AST* tree = parser->parse();
-
-   *int result = tree->evaluate();
-  */
-  
+  int eval(string flujo);  
   void store(int val);
   int recall();
   int Clean();

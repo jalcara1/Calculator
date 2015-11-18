@@ -4,9 +4,6 @@
 #include "calcex.h"
 using namespace std;
 
-//Uncomment this to get debug information
-//#define debug
-
 const int numberOfKeywords = 5;
 
 const string keywd[numberOfKeywords] = {
@@ -75,8 +72,7 @@ Token* Scanner::getToken(){
 	type=eof;
       }
       else{
-	// cout << "Unrecognized Token found at line " << line <<
-	//   " and column " << column << endl;
+	
 	throw UnrecognizedToken;
       }
       break;
@@ -156,10 +152,7 @@ Token* Scanner::getToken(){
   }else{
     t = new Token(type,line,column);
   }
-  #ifdef debug
-  //cout << "just found " << lex << " with type " << type << endl;
-  #endif
- 
+  
   lastToken = t;
   return t;
 }

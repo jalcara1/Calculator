@@ -24,7 +24,6 @@ AST* Parser::Prog(){
   Token* t = scan->getToken();
 
   if(t->getType() != eof){
-    //cout << "Syntax Error: Expected EOF, found token at column " << t->getCol() << endl;
     throw ParseError;
   }
   return result;
@@ -50,20 +49,7 @@ AST* Parser::RestExpr(AST* e){
 }
 
 AST* Parser::Term(){
-  //write your Term() code here. This code is just temporary
-  //so you can try the calculator out before finishing it.
-  // Token* t = scan->getToken();
-
-  //  if (t->getType() == number) {
-  //     istringstream in(t->getLex());
-  //     int val;
-  //     in >> val;
-  //     return new NumNode(val);
-  //  }
-
-  //  cout << "Term not implemented" << endl;
-
-  //  throw ParseError;
+  
   return RestTerm(Storable());
 }
 
@@ -89,23 +75,6 @@ AST* Parser::RestTerm(AST* e){
 
 AST* Parser::Storable(){
 
-  //   Token *t = scan->getToken();
-
-  //   if(t->getType() == keyword){
-
-  // if(t->getLex() == "S"){
-
-  //   return new StoreNode(result);
-  // }
-  //   cout << " Syntax error: Expected S found: " << t -> getLex()
-  // 	 << "line: " << t->getLine()
-  // 	 << "col: " << t ->getCol()
-  // 	 << endl;
-
-  // throw ParseError;
-  // }
-  //scan ->putBackToken();
-
   return MemOperation(Factor());
 }
 
@@ -128,11 +97,6 @@ AST* Parser::MemOperation(AST* result){
       return new MinusNode(result);
 
     }else{
-      // cout << " Syntax error: Expected S found: " << t -> getLex()
-      // 	   << "line: " << t->getLine()
-      // 	 << "col: " << t ->getCol()
-      // 	 << endl;
-    
       throw ParseError;
     }
   }
@@ -167,11 +131,6 @@ AST* Parser::Factor(){
 
       return new CleanNode();
     }
-    // cout << " Syntax error: Expected R found: " << t -> getLex()
-    // 	 << "line: " << t->getLine()
-    // 	 << "col: " << t ->getCol()
-    // 	 << endl;
-
     throw ParseError;
   }
 
@@ -181,17 +140,8 @@ AST* Parser::Factor(){
     if(t->getType() == rparen ){      
       return result;
     }
-    // cout << "Syntax error: Expected ) found: " << t-> getLex()
-    // 	 << " line: " << t->getLine()
-    // 	 << " col: " << t-> getCol()
-    // 	 << endl;
-
     throw ParseError;
   }
-  // cout << "Syntax error: Expected number, R, ("
-  //      << " line: " << t->getLine()
-  //      << " col: " << t-> getCol()
-  //      << endl;
   throw ParseError;
 }
 
@@ -207,27 +157,15 @@ AST* Parser::Assign(string nombre){
   int valor;  
 
   if(t -> getType() == igual){
-
-    //cout <<"En if Assign" << endl;
-    
-    // scan -> putBackToken();
-    // t = scan -> getToken();
     
     result = new NumNode(Expr() -> evaluate());
     result -> assignate(nombre,result -> evaluate());
-    // valor = result -> encontrar(nombre);
-    // cout << nombre << "<-" << valor << endl;
     
     
   }else{
     
-    valor = result -> encontrar(nombre);
-    //cout << "En else Assign" << endl;
-    result  =  new NumNode(valor);
-    //result -> assignate(nombre,prueba);
-
-    //cout << "Varlor de la variable: " << valor << endl;
-    
+    valor = result -> encontrar(nombre);    
+    result  =  new NumNode(valor);    
   }
   scan -> putBackToken();  
   return result;
