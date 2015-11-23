@@ -1,3 +1,4 @@
+#
 class Token
   attr_reader :type, :line, :col
 
@@ -7,7 +8,8 @@ class Token
     @col = colNum
   end
 end
-
+#
+#
 class LexicalToken < Token #LexicalToken hereda de Token junto con todos los atributos
   attr_reader :lex
   
@@ -17,3 +19,4 @@ class LexicalToken < Token #LexicalToken hereda de Token junto con todos los atr
     @lex = lex
   end
 end
+#

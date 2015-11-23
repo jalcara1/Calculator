@@ -1,5 +1,5 @@
 require 'set'
-
+#
 class BinaryNode
   attr_reader :left, :right
   
@@ -8,7 +8,8 @@ class BinaryNode
     @right = right
   end
 end
-   
+#
+#   
 class UnaryNode
   attr_reader :subTree
    
@@ -16,7 +17,8 @@ class UnaryNode
     @subTree = subTree
   end
 end
-
+#
+#
 class StoreNode < UnaryNode
   def initialize(sub)
     super(sub)
@@ -26,14 +28,15 @@ class StoreNode < UnaryNode
     $calc.memory = subTree.evaluate
   end
 end
-
+#
+#
 class RecallNode
   def evaluate
     $calc.memory
   end
 end
-
-
+#
+#
 class AddNode < BinaryNode
   def initialize(left, right)
     super(left,right)
@@ -43,7 +46,8 @@ class AddNode < BinaryNode
     @left.evaluate() + @right.evaluate()
   end
 end
-
+#
+#
 class DivideNode < BinaryNode
   def initialize(left, right)
     super(left,right)
@@ -56,7 +60,8 @@ class DivideNode < BinaryNode
 
   end
 end
-
+#
+#
 class TimesNode < BinaryNode
   def initialize(left, right)
     super(left,right)
@@ -68,8 +73,8 @@ class TimesNode < BinaryNode
     left.evaluate() * right.evaluate()
   end
 end
-
-
+#
+#
 class SubNode < BinaryNode
   def initialize(left, right)
     super(left,right)
@@ -79,7 +84,8 @@ class SubNode < BinaryNode
     @left.evaluate() - @right.evaluate()
   end
 end
-      
+#
+#
 class NumNode 
   def initialize(num)
     @num = num
@@ -89,3 +95,4 @@ class NumNode
     @num
   end
 end
+#
