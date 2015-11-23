@@ -150,7 +150,8 @@ AST* Parser::Assignable(string identifier){
   return  (Assign(identifier));
 }
 
-AST* Parser::Assign(string nombre){  
+AST* Parser::Assign(string nombre){
+  
   Token *t = scan -> getToken();  
   NumNode* result = new NumNode(0);
 

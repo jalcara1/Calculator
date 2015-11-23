@@ -50,7 +50,10 @@ class DivideNode < BinaryNode
   end
    
   def evaluate() 
-    @left.evaluate() / @right.evaluate()
+    #@left.evaluate() / @right.evaluate()
+    
+    left.evaluate() / right.evaluate()
+
   end
 end
 
@@ -60,7 +63,9 @@ class TimesNode < BinaryNode
   end
    
   def evaluate() 
-    @left.evaluate() * @right.evaluate()
+    #@left.evaluate() * @right.evaluate()
+    
+    left.evaluate() * right.evaluate()
   end
 end
 
