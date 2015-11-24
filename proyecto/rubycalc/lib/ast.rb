@@ -30,11 +30,41 @@ class StoreNode < UnaryNode
 end
 #
 #
+class PlusNode < UnaryNode
+  def initialize(sub)
+    super(sub)
+  end
+
+  def evaluate
+    $calc.memory += subTree.evaluate
+  end
+end
+#
+#
+class MinusNode < UnaryNode
+  def initialize(sub)
+    super(sub)
+  end
+
+  def evaluate
+    $calc.memory -= subTree.evaluate
+  end
+end
+#
+#
 class RecallNode
   def evaluate
     $calc.memory
   end
 end
+#
+#
+class CleanNode
+  def evaluate
+    $calc.memory = 0
+  end
+end
+
 #
 #
 class AddNode < BinaryNode
@@ -54,10 +84,18 @@ class DivideNode < BinaryNode
   end
    
   def evaluate() 
-    #@left.evaluate() / @right.evaluate()
-    
-    left.evaluate() / right.evaluate()
+    @left.evaluate() / @right.evaluate()
+  end
+end
+#
+#
+class ModuloNode < BinaryNode
+  def initialize(left, right)
+    super(left,right)
+  end
 
+  def evaluate()
+    @left.evaluate() % @right.evaluate()
   end
 end
 #
@@ -68,9 +106,7 @@ class TimesNode < BinaryNode
   end
    
   def evaluate() 
-    #@left.evaluate() * @right.evaluate()
-    
-    left.evaluate() * right.evaluate()
+    @left.evaluate() * @right.evaluate()
   end
 end
 #
