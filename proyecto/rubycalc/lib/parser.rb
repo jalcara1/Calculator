@@ -64,7 +64,7 @@ class Parser
     # puts "Term not implemented\n"
     
     # raise ParseError.new
-    RestTerm(Storable())
+    return RestTerm(Storable())
   end
   #
   #   
@@ -75,7 +75,7 @@ class Parser
     end
 
     if t.type == :divide then
-      return RestTerm(DivideNode.new(e, Storable()))
+      return RestTerm(DivideNode.new(e, Storable())) #Term()
     end
     
     if t.type == :modulo then
@@ -117,13 +117,15 @@ class Parser
         return StoreNode.new(result)
       elsif t.lex == ?P then
         return PlusNode.new(result)
-      elsif t-lex == ?M then
+      elsif t.lex == ?M then
         return MinusNode.new(result)
       else
+        puts "En MemOperation"
         puts "Expected s found: "+t.lex.to_s
         raise ParseError.new
       end
     end
+    
     @scan.putBackToken()  #Devuelve el caracter ingresado
     return result
     # puts "Storable not implemented"
@@ -134,13 +136,17 @@ class Parser
   def Factor() 
     t = @scan.getToken    
     if t.type == :number then
+      puts "En number"
+      puts "JUKI"
       return NumNode.new(t.lex.to_i)
     end
 
     if t.type == :keyword then
       if t.lex == ?R then
+        puts "En keyword"           
         return RecallNode.new
       elsif t.lex == ?C then
+        puts "En recall"
         return CleanNode.new
       end
       puts "Expected R found: " + t.lex
@@ -148,9 +154,11 @@ class Parser
     end
 
     if t.type == :lparen then
+      puts "En lparen"      
       result = Expr()
       t = @scan.getToken
       if t.type == :rparen then
+        puts "En rparen"        
         return result
       end
       puts "Expected ) found: " + t.type.to_s

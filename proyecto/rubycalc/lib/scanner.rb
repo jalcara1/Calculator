@@ -47,7 +47,6 @@ class Scanner
         elsif c == ?% then state = 7
         elsif c == ?( then state = 8
         elsif c == ?) then state = 9
-        elsif c == ?= then state = 10            
         elsif c == ?\n then 
           @colCount = -1
           @lineCount = @lineCount+1
@@ -96,9 +95,6 @@ class Scanner
         foundOne = true
       when 9
         type = :rparen
-        foundOne = true
-      when 10
-        type = :igual
         foundOne = true
       end
 

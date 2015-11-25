@@ -52,14 +52,14 @@ class MinusNode < UnaryNode
 end
 #
 #
-class RecallNode
+class RecallNode #< UnaryNode
   def evaluate
     $calc.memory
   end
 end
 #
 #
-class CleanNode
+class CleanNode #< UnaryNode
   def evaluate
     $calc.memory = 0
   end
@@ -73,7 +73,7 @@ class AddNode < BinaryNode
   end
    
   def evaluate() 
-    @left.evaluate() + @right.evaluate()
+    #@left.evaluate() + @right.evaluate()    
   end
 end
 #
