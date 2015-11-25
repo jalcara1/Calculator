@@ -128,5 +128,14 @@ class NumNode
   def evaluate() 
     @num
   end
+
+  def assignate(nombre,valor)
+    puts "En ast->assignate"
+  end
+
+  def encontrar(nombre)
+    puts "En ast->encontrar"
+    return 0    
+  end
 end
 #

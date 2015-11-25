@@ -4,14 +4,17 @@ require 'token'
 require 'calcex'
 
 class Parser
+  #
   def initialize(istream)
     @scan = Scanner.new(istream)
   end
-   
+  #
+  #
   def parse()
     return Prog()
   end
-  
+  #
+  #  
   private
   def Prog()
     result = Expr()
@@ -24,11 +27,13 @@ class Parser
     
     return result
   end
-  
+  #
+  #  
   def Expr() 
     return RestExpr(Term())
   end
-   
+  #
+  #   
   def RestExpr(e) 
     t = @scan.getToken()
     
@@ -44,7 +49,8 @@ class Parser
     
     return e
   end
-  
+  #
+  #
   def Term()
     # Write your Term() code here. This code is just temporary
     # so you can try the calculator out before finishing it.
@@ -61,7 +67,8 @@ class Parser
     # raise ParseError.new
     RestTerm(Storable())
   end
-   
+  #
+  #
   def RestTerm(e)
     t = @scan.getToken()
     if t.type == :times then
@@ -80,9 +87,33 @@ class Parser
     # puts "RestTerm not implemented"
     # raise ParseError.new # "Parse Error"
   end
-
+  #
+  #
   def Storable()
-    result = Factor()
+    # result = Factor()
+    # t = @scan.getToken  #obtener un token
+
+    # if t.type == :keyword then
+    #   if t.lex == "S" then
+    #     return StoreNode.new(result)
+    #   elsif t.lex == "M" then
+    #     return MinusNode.new(result)
+    #   elsif t.lex == "P" then
+    #     return PlusNode.new(result)
+    #   end
+    #   puts "Expected s found: "+t.lex.to_s
+    #   raise ParseError.new
+    # end
+    # @scan.putBackToken()  #Devuelve el caracter ingresado
+    # return result
+    # puts "Storable not implemented"
+    # raise ParseError.new # "Parse Error"
+    return MemOperation(Factor())
+  end
+  #
+  #  
+  def MemOperation(result)
+    #result = Factor()
     t = @scan.getToken  #obtener un token
 
     if t.type == :keyword then
@@ -97,15 +128,19 @@ class Parser
       raise ParseError.new
     end
     @scan.putBackToken()  #Devuelve el caracter ingresado
-    return result
-    # puts "Storable not implemented"
-    # raise ParseError.new # "Parse Error"
+      return result      
   end
-   
+  #
+  #   
   def Factor() 
     t = @scan.getToken    
     if t.type == :number then
       return NumNode.new(t.lex.to_i)
+    end
+ 
+    if t.type == :identifier then
+      puts "Encontro identifier"
+      return Assignable(t.lex.to_i)
     end
 
     if t.type == :keyword then
@@ -133,5 +168,34 @@ class Parser
         
     # puts "Factor not implemented"
     # raise ParserError.new # "Parse Error"
-  end         
+  end
+  #
+  #
+  def Assignable(identifier)
+    puts "En Assignable"
+    return Assign(identifier)
+  end
+  #
+  #
+  def Assign(nombre)
+    puts "En Assign"
+    t = @scan.getToken  #obtener un token
+    result = NumNode.new(0)
+    
+    if t.type == :igual then
+      puts "Encontro un igual"
+      result = NumNode.new(Expr().evaluate())
+      result.assignate(nombre,result.evaluate())
+    else
+      puts "No encontro un igual"
+      valor = result.encontrar(nombre);
+      puts "Despues de valor"
+      result = NumNode.new(valor);
+      puts "Despues de result"
+    end
+    puts "Salio"
+    @scan.putBackToken
+    return result    
+  end
+  #
 end

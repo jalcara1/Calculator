@@ -15,22 +15,20 @@ while true do
   $stdout.print "> "
   $stdout.flush
   text = gets
-
-  # if t.type == :eof then
-  #   break
-  # end
   
   begin  
     puts "= " + $calc.eval(text).to_s
-  if t.type == eof then
-    break
-  end
+    
+  # if t.type == eof then
+  #   break
+  # end
     
   rescue ParseError
     puts "Parse Error"
   rescue UnrecognizedTokenException
     puts "UnrecognizedTokenException"
   rescue
+    puts "En calc"
     puts "Unkown exception"
   end
 end
