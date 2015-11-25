@@ -4,6 +4,7 @@ require 'token'
 require 'calcex'
 
 class Parser
+  #
   def initialize(istream)
     @scan = Scanner.new(istream)
   end
@@ -11,7 +12,8 @@ class Parser
   def parse()
     return Prog()
   end
-  
+  #
+  #
   private
   def Prog()
     result = Expr()
@@ -24,11 +26,13 @@ class Parser
     
     return result
   end
-  
+  #
+  #
   def Expr() 
     return RestExpr(Term())
   end
-   
+  #
+  #
   def RestExpr(e) 
     t = @scan.getToken()
     
@@ -44,7 +48,8 @@ class Parser
     
     return e
   end
-  
+  #
+  #  
   def Term()
     # Write your Term() code here. This code is just temporary
     # so you can try the calculator out before finishing it.
@@ -61,7 +66,8 @@ class Parser
     # raise ParseError.new
     RestTerm(Storable())
   end
-   
+  #
+  #   
   def RestTerm(e)
     t = @scan.getToken()
     if t.type == :times then
@@ -70,30 +76,61 @@ class Parser
 
     if t.type == :divide then
       return RestTerm(DivideNode.new(e, Storable()))
-    end    
+    end
+    
+    if t.type == :modulo then
+      return RestTerm(ModuloNode.new(e, Storable()))
+    end
+    
     @scan.putBackToken
     return e
     # puts "RestTerm not implemented"
     # raise ParseError.new # "Parse Error"
   end
-
+  #
+  #
   def Storable()
+    # result = Factor()
+    # t = @scan.getToken  #obtener un token
+
+    # if t.type == :keyword then
+    #   if t.lex == "S" then
+    #     return StoreNode.new(result)
+    #   end
+    #   puts "Expected s found: "+t.lex.to_s
+    #   raise ParseError.new
+    # end
+    # @scan.putBackToken()  #Devuelve el caracter ingresado
+    # return result
+    # # puts "Storable not implemented"
+    # # raise ParseError.new # "Parse Error"
+    return MemOperation(Factor())
+  end
+  #
+  #
+  def MemOperation(result)
     result = Factor()
     t = @scan.getToken  #obtener un token
 
     if t.type == :keyword then
-      if t.lex == "S" then
+      if t.lex == ?S then
         return StoreNode.new(result)
+      elsif t.lex == ?P then
+        return PlusNode.new(result)
+      elsif t-lex == ?M then
+        return MinusNode.new(result)
+      else
+        puts "Expected s found: "+t.lex.to_s
+        raise ParseError.new
       end
-      puts "Expected s found: "+t.lex.to_s
-      raise ParseError.new
     end
     @scan.putBackToken()  #Devuelve el caracter ingresado
     return result
     # puts "Storable not implemented"
-    # raise ParseError.new # "Parse Error"
+    # raise ParseError.new # "Parse Error"    
   end
-   
+  #
+  #   
   def Factor() 
     t = @scan.getToken    
     if t.type == :number then
@@ -101,8 +138,10 @@ class Parser
     end
 
     if t.type == :keyword then
-      if t.lex == "R" then
+      if t.lex == ?R then
         return RecallNode.new
+      elsif t.lex == ?C then
+        return CleanNode.new
       end
       puts "Expected R found: " + t.lex
       raise ParseError.new
@@ -118,10 +157,11 @@ class Parser
       raise ParseError.new
     end
 
-    puts "Expected number, R, ( found: " + t.type.to_s
+    puts "Expected number, R, C, ( found: " + t.type.to_s
     raise ParseError.new
         
     # puts "Factor not implemented"
     # raise ParserError.new # "Parse Error"
-  end         
+  end
+  #
 end
