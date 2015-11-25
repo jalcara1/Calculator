@@ -5,7 +5,7 @@ require 'set'
 class Scanner
   def initialize(inStream)
     @istream = inStream
-    @keywords = Set.new(["S","R","C"])
+    @keywords = Set.new(["S","M","P","R","C"])
     #Arreglo que busca sin mirar las repetidas
     @lineCount = 1
     @colCount = -1

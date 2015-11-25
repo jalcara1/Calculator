@@ -88,6 +88,10 @@ class Parser
     if t.type == :keyword then
       if t.lex == "S" then
         return StoreNode.new(result)
+      elsif t.lex == "M" then
+        return MinusNode.new(result)
+      elsif t.lex == "P" then
+        return PlusNode.new(result)
       end
       puts "Expected s found: "+t.lex.to_s
       raise ParseError.new

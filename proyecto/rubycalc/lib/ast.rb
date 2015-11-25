@@ -30,6 +30,28 @@ class StoreNode < UnaryNode
 end
 #
 #
+class MinusNode < UnaryNode
+  # def initialize(sub)
+  #   super(sub)
+  # end
+
+  def evaluate
+    $calc.memory -= subTree.evaluate
+  end
+end
+#
+#
+class PlusNode < UnaryNode
+  # def initialize(sub)
+  #   super(sub)
+  # end
+
+  def evaluate
+    $calc.memory += subTree.evaluate
+  end
+end
+#
+#
 class RecallNode
   def evaluate
     $calc.memory
