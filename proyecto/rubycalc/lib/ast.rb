@@ -136,6 +136,7 @@ class NumNode
 
   def encontrar(nombre)
     puts "En ast->encontrar"
+    puts nombre
     return $calc.getVariables(nombre)    
   end
 end

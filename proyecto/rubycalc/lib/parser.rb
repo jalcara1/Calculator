@@ -137,10 +137,10 @@ class Parser
     if t.type == :number then
       return NumNode.new(t.lex.to_i)
     end
- 
+    
     if t.type == :identifier then
       puts "Encontro identifier"
-      return Assignable(t.lex.to_i)
+      return Assignable(t.lex)
     end
 
     if t.type == :keyword then

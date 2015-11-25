@@ -10,6 +10,8 @@ class Calculator
   
   def initialize()
     @memory = 0
+    @variables = Array.new
+    @nombres = Array.new
   end
   
   def eval(expr)
@@ -20,11 +22,14 @@ class Calculator
 
   def crearVar(nombre, valor)
     puts "En crearVar"
-    return 0
+    @variables.push(valor)
+    puts @variables
   end
 
   def getVariables(nombre)
     puts "En getVariables"
+    @nombres << nombre
+    puts @nombres
     return 0
   end
 end
