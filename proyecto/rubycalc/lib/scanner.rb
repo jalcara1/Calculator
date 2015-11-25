@@ -5,7 +5,8 @@ require 'set'
 class Scanner
   def initialize(inStream)
     @istream = inStream
-    @keywords = Set.new(["S","R","C","P","M"])#Arreglo que busca sin mirar las repetidas
+    @keywords = Set.new(["S","R","C"])
+    #Arreglo que busca sin mirar las repetidas
     @lineCount = 1
     @colCount = -1
     @needToken = true
@@ -43,8 +44,8 @@ class Scanner
         elsif c == ?+ then state = 3
         elsif c == ?- then state = 4
         elsif c == ?* then state = 5
-        elsif c == ?/ then state = 6
-        elsif c == ?% then state = 7
+        elsif c == ?% then state = 6
+        elsif c == ?/ then state = 7
         elsif c == ?( then state = 8
         elsif c == ?) then state = 9
         elsif c == ?\n then 
@@ -85,10 +86,10 @@ class Scanner
         type = :times
         foundOne = true
       when 6
-        type = :divide
+        type = :modulo
         foundOne = true
       when 7
-        type = :modulo
+        type = :divide
         foundOne = true
       when 8
         type = :lparen
@@ -130,3 +131,4 @@ class Scanner
     return (c == ?\  or c == ?\n or c == ?\t)
   end
 end
+
