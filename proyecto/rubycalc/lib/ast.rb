@@ -131,11 +131,12 @@ class NumNode
 
   def assignate(nombre,valor)
     puts "En ast->assignate"
+    $calc.crearVar(nombre,valor)    
   end
 
   def encontrar(nombre)
     puts "En ast->encontrar"
-    return 0    
+    return $calc.getVariables(nombre)    
   end
 end
 #

@@ -17,4 +17,14 @@ class Calculator
     ast = parser.parse()
     return ast.evaluate()
   end
+
+  def crearVar(nombre, valor)
+    puts "En crearVar"
+    return 0
+  end
+
+  def getVariables(nombre)
+    puts "En getVariables"
+    return 0
+  end
 end
