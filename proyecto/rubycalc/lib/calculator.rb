@@ -20,16 +20,42 @@ class Calculator
     return ast.evaluate()
   end
 
-  def crearVar(nombre, valor)
+  def crearVar(nombre, valor)    
     puts "En crearVar"
-    @variables.push(valor)
-    puts @variables
+    entra = true    
+    posN = @nombres.length
+    
+    while posN >= 0 do
+      puts "Ciclo crear"
+      if @nombres[posN] == nombre then
+        puts "Lo encontro"
+        @variables[posN] = valor
+        entra = false
+        puts "Lo modifico"
+      end
+      posN -= 1
+    end
+
+    if entra == true then
+      puts "No lo encontro"
+      @variables.push(valor)
+      @nombres.push(nombre)
+      puts "Lo creo"
+    end
   end
 
   def getVariables(nombre)
     puts "En getVariables"
-    @nombres << nombre
-    puts @nombres
+    posN = @nombres.length
+    while posN >= 0 do
+      puts "Ciclo get"
+      if @nombres[posN] == nombre then
+        puts "Lo encontro"
+        return @variables[posN]
+      end
+      posN -= 1
+    end
+    puts "No lo encontro"
     return 0
   end
 end
