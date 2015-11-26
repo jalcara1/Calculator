@@ -57,7 +57,7 @@ class Scanner
           @foundOne = true
           type = :eof
         else
-          puts "Unrecognized Token found at line ",line," and column ",column,"\n"
+         # puts "Unrecognized Token found at line ",line," and column ",column,"\n"
           raise UnrecognizedTokenException # "Unrecognized Token"
         end
       when 1

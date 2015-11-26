@@ -21,7 +21,7 @@ class Parser
     t = @scan.getToken()
     
     if t.type != :eof then
-      print "Expected EOF. Found ", t.type, ".\n"
+      #print "Expected EOF. Found ", t.type, ".\n"
       raise ParseError.new
     end
     
@@ -85,7 +85,7 @@ class Parser
     @scan.putBackToken
     return e
     # puts "RestTerm not implemented"
-    # raise ParseError.new # "Parse Error"
+    #raise ParseError.new # "Parse Error"
   end
   #
   #
@@ -124,7 +124,7 @@ class Parser
       elsif t.lex == "P" then
         return PlusNode.new(result)
       end
-      puts "Expected s found: "+t.lex.to_s
+     ## puts "Expected s found: "+t.lex.to_s
       raise ParseError.new
     end
     @scan.putBackToken()  #Devuelve el caracter ingresado
@@ -139,7 +139,7 @@ class Parser
     end
     
     if t.type == :identifier then
-      puts "Encontro identifier"
+     ## puts "Encontro identifier"
       return Assignable(t.lex)
     end
 
@@ -149,7 +149,7 @@ class Parser
       elsif t.lex == ?C then
         return CleanNode.new
       end
-      puts "Expected R found: " + t.lex
+     # puts "Expected R found: " + t.lex
       raise ParseError.new
     end
 
@@ -159,11 +159,11 @@ class Parser
       if t.type == :rparen then
         return result
       end
-      puts "Expected ) found: " + t.type.to_s
+      #puts "Expected ) found: " + t.type.to_s
       raise ParseError.new
     end
 
-    puts "Expected number, R, ( found: " + t.type.to_s
+    #puts "Expected number, R, ( found: " + t.type.to_s
     raise ParseError.new
         
     # puts "Factor not implemented"
@@ -172,28 +172,28 @@ class Parser
   #
   #
   def Assignable(identifier)
-    puts "En Assignable"
+    #puts "En Assignable"
     return Assign(identifier)
   end
   #
   #
   def Assign(nombre)
-    puts "En Assign"
+    #puts "En Assign"
     t = @scan.getToken  #obtener un token
     result = NumNode.new(0)
     
     if t.type == :igual then
-      puts "Encontro un igual"
+     # puts "Encontro un igual"
       result = NumNode.new(Expr().evaluate())
       result.assignate(nombre,result.evaluate())
     else
-      puts "No encontro un igual"
+      #puts "No encontro un igual"
       valor = result.encontrar(nombre);
-      puts "Despues de valor"
+      #puts "Despues de valor"
       result = NumNode.new(valor);
-      puts "Despues de result"
+      #puts "Despues de result"
     end
-    puts "Salio"
+    #puts "Salio"
     @scan.putBackToken
     return result    
   end

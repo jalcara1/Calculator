@@ -21,41 +21,41 @@ class Calculator
   end
 
   def crearVar(nombre, valor)    
-    puts "En crearVar"
+    #puts "En crearVar"
     entra = true    
     posN = @nombres.length
     
     while posN >= 0 do
-      puts "Ciclo crear"
+      #puts "Ciclo crear"
       if @nombres[posN] == nombre then
-        puts "Lo encontro"
+       # puts "Lo encontro"
         @variables[posN] = valor
         entra = false
-        puts "Lo modifico"
+        #puts "Lo modifico"
       end
       posN -= 1
     end
 
     if entra == true then
-      puts "No lo encontro"
+      #puts "No lo encontro"
       @variables.push(valor)
       @nombres.push(nombre)
-      puts "Lo creo"
+      #puts "Lo creo"
     end
   end
 
   def getVariables(nombre)
-    puts "En getVariables"
+    #puts "En getVariables"
     posN = @nombres.length
     while posN >= 0 do
-      puts "Ciclo get"
+     # puts "Ciclo get"
       if @nombres[posN] == nombre then
-        puts "Lo encontro"
+      #  puts "Lo encontro"
         return @variables[posN]
       end
       posN -= 1
     end
-    puts "No lo encontro"
+    #puts "No lo encontro"
     return 0
   end
 end
