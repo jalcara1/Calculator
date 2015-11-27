@@ -4,17 +4,15 @@ require 'token'
 require 'calcex'
 
 class Parser
-  #
+  
   def initialize(istream)
     @scan = Scanner.new(istream)
   end
-  #
-  #
+  
   def parse()
     return Prog()
   end
-  #
-  #  
+    
   private
   def Prog()
     result = Expr()
@@ -26,13 +24,11 @@ class Parser
     
     return result
   end
-  #
-  #  
+    
   def Expr() 
     return RestExpr(Term())
   end
-  #
-  #   
+     
   def RestExpr(e) 
     t = @scan.getToken()
     
@@ -48,13 +44,11 @@ class Parser
     
     return e
   end
-  #
-  #
+  
   def Term()
     RestTerm(Storable())
   end
-  #
-  #
+  
   def RestTerm(e)
     t = @scan.getToken()
     if t.type == :times then
@@ -71,13 +65,11 @@ class Parser
     @scan.putBackToken
     return e
   end
-  #
-  #
+  
   def Storable()
     return MemOperation(Factor())
   end
-  #
-  #  
+    
   def MemOperation(result)
     t = @scan.getToken  #obtener un token
 
@@ -94,8 +86,7 @@ class Parser
     @scan.putBackToken()  #Devuelve el caracter ingresado
       return result      
   end
-  #
-  #   
+       
   def Factor() 
     t = @scan.getToken    
     if t.type == :number then
@@ -125,13 +116,11 @@ class Parser
     end
     raise ParseError.new
   end
-  #
-  #
+  
   def Assignable(identifier)
     return Assign(identifier)
   end
-  #
-  #
+  
   def Assign(nombre)
     t = @scan.getToken  #obtener un token
     result = NumNode.new(0)
@@ -145,6 +134,5 @@ class Parser
     end
     @scan.putBackToken
     return result    
-  end
-  #
+  end  
 end
