@@ -21,7 +21,6 @@ class Parser
     t = @scan.getToken()
     
     if t.type != :eof then
-      #print "Expected EOF. Found ", t.type, ".\n"
       raise ParseError.new
     end
     
@@ -52,19 +51,6 @@ class Parser
   #
   #
   def Term()
-    # Write your Term() code here. This code is just temporary
-    # so you can try the calculator out before finishing it.
-    
-    # t = @scan.getToken()
-    
-    # if t.type == :number then
-    #   val = t.lex.to_i
-    #   return NumNode.new(val)
-    # end
-    
-    # puts "Term not implemented\n"
-    
-    # raise ParseError.new
     RestTerm(Storable())
   end
   #
@@ -84,36 +70,15 @@ class Parser
     end    
     @scan.putBackToken
     return e
-    # puts "RestTerm not implemented"
-    #raise ParseError.new # "Parse Error"
   end
   #
   #
   def Storable()
-    # result = Factor()
-    # t = @scan.getToken  #obtener un token
-
-    # if t.type == :keyword then
-    #   if t.lex == "S" then
-    #     return StoreNode.new(result)
-    #   elsif t.lex == "M" then
-    #     return MinusNode.new(result)
-    #   elsif t.lex == "P" then
-    #     return PlusNode.new(result)
-    #   end
-    #   puts "Expected s found: "+t.lex.to_s
-    #   raise ParseError.new
-    # end
-    # @scan.putBackToken()  #Devuelve el caracter ingresado
-    # return result
-    # puts "Storable not implemented"
-    # raise ParseError.new # "Parse Error"
     return MemOperation(Factor())
   end
   #
   #  
   def MemOperation(result)
-    #result = Factor()
     t = @scan.getToken  #obtener un token
 
     if t.type == :keyword then
@@ -124,7 +89,6 @@ class Parser
       elsif t.lex == "P" then
         return PlusNode.new(result)
       end
-     ## puts "Expected s found: "+t.lex.to_s
       raise ParseError.new
     end
     @scan.putBackToken()  #Devuelve el caracter ingresado
@@ -139,7 +103,6 @@ class Parser
     end
     
     if t.type == :identifier then
-     ## puts "Encontro identifier"
       return Assignable(t.lex)
     end
 
@@ -149,7 +112,6 @@ class Parser
       elsif t.lex == ?C then
         return CleanNode.new
       end
-     # puts "Expected R found: " + t.lex
       raise ParseError.new
     end
 
@@ -159,41 +121,28 @@ class Parser
       if t.type == :rparen then
         return result
       end
-      #puts "Expected ) found: " + t.type.to_s
       raise ParseError.new
     end
-
-    #puts "Expected number, R, ( found: " + t.type.to_s
     raise ParseError.new
-        
-    # puts "Factor not implemented"
-    # raise ParserError.new # "Parse Error"
   end
   #
   #
   def Assignable(identifier)
-    #puts "En Assignable"
     return Assign(identifier)
   end
   #
   #
   def Assign(nombre)
-    #puts "En Assign"
     t = @scan.getToken  #obtener un token
     result = NumNode.new(0)
     
     if t.type == :igual then
-     # puts "Encontro un igual"
       result = NumNode.new(Expr().evaluate())
       result.assignate(nombre,result.evaluate())
     else
-      #puts "No encontro un igual"
       valor = result.encontrar(nombre);
-      #puts "Despues de valor"
       result = NumNode.new(valor);
-      #puts "Despues de result"
     end
-    #puts "Salio"
     @scan.putBackToken
     return result    
   end

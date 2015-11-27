@@ -31,10 +31,6 @@ end
 #
 #
 class MinusNode < UnaryNode
-  # def initialize(sub)
-  #   super(sub)
-  # end
-
   def evaluate
     $calc.memory -= subTree.evaluate
   end
@@ -42,10 +38,6 @@ end
 #
 #
 class PlusNode < UnaryNode
-  # def initialize(sub)
-  #   super(sub)
-  # end
-
   def evaluate
     $calc.memory += subTree.evaluate
   end
@@ -130,13 +122,10 @@ class NumNode
   end
 
   def assignate(nombre,valor)
-    #puts "En ast->assignate"
     $calc.crearVar(nombre,valor)    
   end
 
   def encontrar(nombre)
-    #puts "En ast->encontrar"
-    #puts nombre
     return $calc.getVariables(nombre)    
   end
 end
