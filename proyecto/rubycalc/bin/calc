@@ -4,31 +4,22 @@ require 'rubygems'
 require 'calculator'
 require 'calcex'
 
-#$stdout.print "> "
-#$stdout.flush
-
-#text = gets
-
 $calc = Calculator.new()
-
-while true do
+while true do  
   $stdout.print "> "
   $stdout.flush
   text = gets
   
-  begin  
-    puts "= " + $calc.eval(text).to_s
-    
-  # if t.type == eof then
-  #   break
-  # end
-    
+  begin
+     if text == nil then
+        break
+     end
+    puts "=> " + $calc.eval(text).to_s
   rescue ParseError
-    puts "Parse Error"
+    puts "* Parse Error"
   rescue UnrecognizedTokenException
-    puts "UnrecognizedTokenException"
+    #puts "UnrecognizedTokenException"
   rescue
-    puts "En calc"
-    puts "Unkown exception"
+    #puts "Unkown exception"
   end
 end
