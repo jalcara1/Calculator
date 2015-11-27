@@ -12,6 +12,7 @@ class Calculator
     @memory = 0
     @variables = Array.new
     @nombres = Array.new
+    @salidaF = ""
   end
   
   def eval(expr)
@@ -42,6 +43,8 @@ class Calculator
       @nombres.push(nombre)
       #puts "Lo creo"
     end
+
+    salida(nombre,valor)
   end
 
   def getVariables(nombre)
@@ -57,5 +60,23 @@ class Calculator
     end
     #puts "No lo encontro"
     return 0
+  end
+
+  def salida(nombre,valor)
+    if @salidaF == "" then
+      puts "HOLO"
+      @salidaF = @salidaF + nombre + " <- " + valor
+    else
+      puts "HULU"
+      @salidaF = @salidaF + ", " + nombre + " <- " + valor
+    end
+  end
+
+  def getSalida()
+    return @salidaF
+  end
+
+  def limpiarSalida()
+    @salidaF = ""    
   end
 end

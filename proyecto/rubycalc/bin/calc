@@ -1,25 +1,44 @@
-#!/usr/bin/env ruby
+#!/usr/bin/env rubyA
 
 require 'rubygems'
 require 'calculator'
 require 'calcex'
 
+#$stdout.print "> "
+#$stdout.flush
+
+#text = gets
+
 $calc = Calculator.new()
-while true do  
+
+while true do
   $stdout.print "> "
   $stdout.flush
   text = gets
   
   begin
-     if text == nil then
-        break
+
+    if text == nil then
+      break
+    end
+    
+     result = $calc.eval(text).to_s
+
+     if $calc.getSalida() == "" then
+       print "=> " + result
+       puts ""
+     else
+       print "=> " + result
+       print " [" + $calc.getSalida() + "]"
+       puts ""
+       $calc.limpiarSalida()
      end
-    puts "=> " + $calc.eval(text).to_s
   rescue ParseError
-    puts "* Parse Error"
+    puts "Parse Error"
   rescue UnrecognizedTokenException
-    #puts "UnrecognizedTokenException"
+    puts "UnrecognizedTokenException"
   rescue
-    #puts "Unkown exception"
+    puts "En calc"
+    puts "Unkown exception"
   end
 end
