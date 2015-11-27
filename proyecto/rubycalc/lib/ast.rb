@@ -125,7 +125,7 @@ class NumNode
     @num = num
   end
    
-  def evaluate() 
+  def evaluate()
     @num
   end
 

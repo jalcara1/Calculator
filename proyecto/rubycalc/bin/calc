@@ -11,34 +11,64 @@ require 'calcex'
 
 $calc = Calculator.new()
 
-while true do
-  $stdout.print "> "
-  $stdout.flush
-  text = gets
-  
-  begin
+cont=1;
+esFichero=false
+fichero=""
 
-    if text == nil then
-      break
+if ARGV.size() > 0 then
+  lines = ARGF.readlines
+  lines.each do |l|
+    begin
+      
+      result = $calc.eval(l).to_s
+
+      if $calc.getSalida() == "" then
+        print "=> " + result
+        puts ""
+      else
+        print "=> " + result
+        print " [" + $calc.getSalida() + "]"
+        puts ""
+        $calc.limpiarSalida()
+      end
+    rescue ParseError
+      puts "* Parse Error 1"
+    rescue UnrecognizedTokenException
+      puts "* Parse Error 2"
+    rescue
+      puts "* Parse Error 3"
     end
+  end   
+  
+else
+  while true do
+    $stdout.print "> "
+    $stdout.flush
+    text = gets
     
-     result = $calc.eval(text).to_s
+    begin
 
-     if $calc.getSalida() == "" then
-       print "=> " + result
-       puts ""
-     else
-       print "=> " + result
-       print " [" + $calc.getSalida() + "]"
-       puts ""
-       $calc.limpiarSalida()
-     end
-  rescue ParseError
-    puts "* Parse Error"
-  rescue UnrecognizedTokenException
-    puts "UnrecognizedTokenException"
-  rescue
-    puts "En calc"
-    puts "Unkown exception"
+      if text == nil then
+        break
+      end
+
+      result = $calc.eval(text).to_s
+
+      if $calc.getSalida() == "" then
+        print "=> " + result
+        puts ""
+      else
+        print "=> " + result
+        print " [" + $calc.getSalida() + "]"
+        puts ""
+        $calc.limpiarSalida()
+      end
+    rescue ParseError
+      puts "* Parse Error 1"
+    rescue UnrecognizedTokenException
+      puts "* Parse Error 2"
+    rescue
+      puts "* Parse Error 3"
+    end
   end
 end
