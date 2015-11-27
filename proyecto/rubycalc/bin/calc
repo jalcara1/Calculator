@@ -34,7 +34,7 @@ while true do
        $calc.limpiarSalida()
      end
   rescue ParseError
-    puts "Parse Error"
+    puts "* Parse Error"
   rescue UnrecognizedTokenException
     puts "UnrecognizedTokenException"
   rescue

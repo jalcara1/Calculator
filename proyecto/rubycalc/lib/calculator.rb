@@ -64,11 +64,9 @@ class Calculator
 
   def salida(nombre,valor)
     if @salidaF == "" then
-      puts "HOLO"
-      @salidaF = @salidaF + nombre + " <- " + valor
+      @salidaF = @salidaF + nombre + " <- " + valor.to_s
     else
-      puts "HULU"
-      @salidaF = @salidaF + ", " + nombre + " <- " + valor
+      @salidaF = @salidaF + ", " + nombre + " <- " + valor.to_s
     end
   end
 
